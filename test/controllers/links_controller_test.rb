@@ -19,7 +19,7 @@ class LinksControllerTest < ActionController::TestCase
 
   test "should create link" do
     assert_difference('Link.count') do
-      post :create, link: { description: @link.description, level: @link.level, title: @link.title, url: @link.url }
+      post :create, link: { description: @link.description, level: @link.level, title: @link.title, url: @link.url + "?" + rand(10000).to_s}
     end
 
     assert_redirected_to link_path(assigns(:link))
@@ -48,4 +48,3 @@ class LinksControllerTest < ActionController::TestCase
     assert_redirected_to links_path
   end
 end
-

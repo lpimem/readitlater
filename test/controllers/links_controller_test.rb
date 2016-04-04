@@ -1,3 +1,4 @@
+
 require 'test_helper'
 
 class LinksControllerTest < ActionController::TestCase
@@ -47,3 +48,4 @@ class LinksControllerTest < ActionController::TestCase
     assert_redirected_to links_path
   end
 end
+

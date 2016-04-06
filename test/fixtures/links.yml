@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  url: https://www.youtube.com/watch?v=TnXXR7IOYiI
+  title: TestFixtureOne
+  description: This is one test fixture.
+  level: 2
+
+test1:
+  url: http://google.com
+  title: Google
+  description: A fascinating search engine
+  level: 2
+
+test2:
+  url: http://gmail.com
+  title: Gmail
+  description: You can email anyone using this link
+  level: 1

@@ -18,7 +18,7 @@ class AccountsControllerTest < ActionController::TestCase
 
   test "should create account" do
     assert_difference('Account.count') do
-      post :create, account: { level: @account.level, password: @account.password, username: @account.username }
+      post :create, account: { level: @account.level, password: @account.password, username: @account.username + rand(10000).to_s}
     end
 
     assert_redirected_to account_path(assigns(:account))

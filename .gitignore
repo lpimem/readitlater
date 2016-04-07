@@ -15,3 +15,6 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Ignore pid file for UNIX-like OS created by sever.sh
+_running

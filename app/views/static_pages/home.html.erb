@@ -1,11 +1,3 @@
-<h1 class="heading">Read It Later!<h1>
-<input type="search" class="mt-10" placeholder="Search!" />
-<div class="right-nav">
-	<input type="button" class="button" value="SIGN UP">
-	<input type="button" class="button" value="LOGIN">
-</div>
-<div class="clearfix">
-</div>
 <div class="right-nav mt-10">
 	<input type="button" class="button" value="VIEW REPORT">
 	<input type="button" class="button" value="PUBLISH">
@@ -19,14 +11,4 @@
 <div class="clearfix">
 </div>
 
-<% @links.each do |link| %>
-    <div class="comments-list">
-		<a href="<%= link.url %>"><h5><%= link.title %></h5></a>
-		<p class="mt-10"><%= link.description %></p>
-		<p class="mt-10">Date Published: <%= link.created_at.to_formatted_s(:long_ordinal) %></p>
-		<input type="button" class="button mt-10" value="RATE">
-		<input type="button" class="button mt-10" value="COMMENT">
-		<input type="button" class="button mt-10" value="PUBLISHER">
-		<input type="button" class="button mt-10" value="REPORT LINK">
-	</div>
-<% end %>
+<%= render partial: "links/links" %>

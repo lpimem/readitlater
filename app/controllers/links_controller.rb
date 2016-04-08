@@ -62,8 +62,9 @@ class LinksController < ApplicationController
   end
 
   def search
-    @links = Link.where("title like ?", "%" + params[:keyword] + "%")
-    # @links = Link.all
+    @links = Link.where("title like ? or description like ?",
+    "%" + params[:keyword] + "%",
+    "%" + params[:keyword] + "%" )
   end
 
   private

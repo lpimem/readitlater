@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
+  resources :accounts
   resources :links
 
   root 'static_pages#home'
 
-  
+  get 'search', to: 'links#search'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

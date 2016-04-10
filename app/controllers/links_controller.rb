@@ -61,6 +61,12 @@ class LinksController < ApplicationController
     end
   end
 
+  def search
+    @links = Link.where("title like ? or description like ?",
+    "%" + params[:keyword] + "%",
+    "%" + params[:keyword] + "%" )
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_link

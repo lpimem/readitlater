@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160403223002) do
+ActiveRecord::Schema.define(version: 20160407193054) do
+
+  create_table "accounts", force: :cascade do |t|
+    t.string   "username"
+    t.string   "password"
+    t.integer  "level"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "links", force: :cascade do |t|
     t.string   "url"

@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :links
 
   root 'static_pages#home'
+  get 'signup', to: 'links#signup',as: 'signup' 
+  get 'login', to: 'links#login',as: 'login' 
 
   get 'search', to: 'links#search'
 

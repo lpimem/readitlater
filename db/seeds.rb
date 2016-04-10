@@ -29,3 +29,10 @@ Account.create!(
   password: "test_user_lp_12345",
   level: 1
 )
+
+#rating seed data
+
+Rate.create!(value: 20)
+Rate.create!(value: 10)
+Rate.create!(value: 25)
+Rate.create!(value: 40)

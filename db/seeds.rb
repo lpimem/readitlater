@@ -30,3 +30,11 @@ Account.create!(
   level: 1
 )
 
+
+#rating seed data
+
+Rate.create!(value: 20)
+Rate.create!(value: 10)
+Rate.create!(value: 25)
+Rate.create!(value: 40)
+

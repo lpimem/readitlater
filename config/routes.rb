@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :followships
+  resources :ratings
   resources :accounts
   resources :links
 

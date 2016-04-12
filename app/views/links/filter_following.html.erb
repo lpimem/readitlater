@@ -1,0 +1,25 @@
+<div class="right-nav mt-10">
+	<input type="button" class="button" value="VIEW REPORT">
+	<input type="button" class="button" value="PUBLISH">
+</div>
+
+<div class="clearfix mt-10">
+</div>
+<!-- TODO: extract this part -->
+<div class="right mt-10">
+		<input id='cb_filter_following' type="checkbox" class="button" checked="true"> Show only follower links
+</div>
+
+
+<div class="clearfix">
+</div>
+
+<%= render partial: "links/links" %>
+
+<script>
+  $().ready(function(){
+    $("#cb_filter_following").click(function(){
+      window.location.href = "/";
+    });
+  });
+</script>

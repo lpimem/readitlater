@@ -2,31 +2,24 @@
 #
 # Table name: accounts
 #
-#  id               :integer          not null, primary key
-#  username         :string
-#  password         :string
-#  level            :integer
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  followship_id_id :integer
+#  id                     :integer          not null, primary key
+#  email                  :string           default(""), not null
+#  encrypted_password     :string           default(""), not null
+#  reset_password_token   :string
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer          default("0"), not null
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :string
+#  last_sign_in_ip        :string
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
 #
 
 class Account < ActiveRecord::Base
-  
-  validates :username, presence: true,
-      uniqueness: true, format: {
-        with: /\w[\w\d_]*/,
-        message: "username must start with a letter, and can only contains letters, digits and underscores"
-      }
-
-  validates :password, presence: true
-
-  validates :level, presence: true, numericality: {
-    only_integer: true,
-    greater_than_or_equal_to: 0,
-    less_than_or_equal_to: 2
-  }
-
-  has_many :rate, class_name: "rating", foreign_key: "rate"
-
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
 end

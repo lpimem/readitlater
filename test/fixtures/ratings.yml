@@ -7,8 +7,8 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  link_id_id :integer
-#  usr_id_id  :integer
 #
+
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 

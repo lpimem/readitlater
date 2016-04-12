@@ -9,4 +9,10 @@
 #
 
 class Rating < ActiveRecord::Base
+	
+	belongs_to :link
+	belongs_to :account, class_name:"Account", foreign_key: "usr_id"
+
+	validates :value, presence: true
+	
 end

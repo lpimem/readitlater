@@ -17,4 +17,6 @@ class Link < ActiveRecord::Base
 	validates :title, presence: true
 	validates :level, presence: true,numericality: { greater_than_or_equal_to:1 , less_than_or_equal_to:3}
 	validates :description, presence: true, length: { maximum: 100}
+
+	has_many :rate, class_name: "rating", foreign_key: "rate_id"
 end

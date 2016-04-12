@@ -25,4 +25,9 @@ class Account < ActiveRecord::Base
     greater_than_or_equal_to: 0,
     less_than_or_equal_to: 2
   }
+
+has_many :rate, class_name: "rating", foreign_key: "rate"
+has_many :followship, class_name: "followship", foreign_key: "followship_id"
+belong_to :follower, class_name: "followship", foreign_key: "followship_id"
+
 end

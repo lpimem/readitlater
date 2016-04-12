@@ -13,7 +13,7 @@ link4 = Link.create!(url:'http://bluebrain.epfl.ch/',title:'Blue Brain',descript
 
 
 
-#rating seed data
+# rating seed data
 
 rate1 = Rating.create!(value: 20)
 rate2 = Rating.create!(value: 10)
@@ -21,3 +21,10 @@ rate3 = Rating.create!(value: 25)
 rate4 = Rating.create!(value: 40)
 rate5 = Rating.create!(value: 1)
 rate6 = Rating.create!(value: -3)
+
+
+# account seed data
+
+
+
+# followship seed data

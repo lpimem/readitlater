@@ -10,7 +10,4 @@
 
 class Followship < ActiveRecord::Base
 
-	belongs_to :account, class_name: "Account", foreign_key: "user"
-	has_many :follower, class_name: "Account", foreign_key: "user"
-	
 end

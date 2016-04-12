@@ -2,12 +2,13 @@
 #
 # Table name: accounts
 #
-#  id         :integer          not null, primary key
-#  username   :string
-#  password   :string
-#  level      :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id               :integer          not null, primary key
+#  username         :string
+#  password         :string
+#  level            :integer
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  followship_id_id :integer
 #
 
 require 'test_helper'

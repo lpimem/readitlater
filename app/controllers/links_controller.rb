@@ -65,6 +65,8 @@ class LinksController < ApplicationController
     @links = Link.where("title like ? or description like ?",
     "%" + params[:keyword] + "%",
     "%" + params[:keyword] + "%" )
+    @links = Link.order("links.created_by")
+    @link = Link.new(link_params)
   end
 
   def filter_following

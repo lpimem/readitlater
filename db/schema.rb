@@ -17,20 +17,20 @@ ActiveRecord::Schema.define(version: 20160410183621) do
     t.string   "username"
     t.string   "password"
     t.integer  "level"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.integer  "followship_id_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "followship_id"
   end
 
-  add_index "accounts", ["followship_id_id"], name: "index_accounts_on_followship_id_id"
+  add_index "accounts", ["followship_id"], name: "index_accounts_on_followship_id"
 
   create_table "followships", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "usr_id_id"
+    t.integer  "user_id"
   end
 
-  add_index "followships", ["usr_id_id"], name: "index_followships_on_usr_id_id"
+  add_index "followships", ["user_id"], name: "index_followships_on_user_id"
 
   create_table "links", force: :cascade do |t|
     t.string   "url"
@@ -45,11 +45,11 @@ ActiveRecord::Schema.define(version: 20160410183621) do
     t.integer  "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "link_id_id"
-    t.integer  "usr_id_id"
+    t.integer  "link_id"
+    t.integer  "user_id"
   end
 
-  add_index "ratings", ["link_id_id"], name: "index_ratings_on_link_id_id"
-  add_index "ratings", ["usr_id_id"], name: "index_ratings_on_usr_id_id"
+  add_index "ratings", ["link_id"], name: "index_ratings_on_link_id"
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id"
 
 end

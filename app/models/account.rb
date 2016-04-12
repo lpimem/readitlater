@@ -2,12 +2,13 @@
 #
 # Table name: accounts
 #
-#  id         :integer          not null, primary key
-#  username   :string
-#  password   :string
-#  level      :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id               :integer          not null, primary key
+#  username         :string
+#  password         :string
+#  level            :integer
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  followship_id_id :integer
 #
 
 class Account < ActiveRecord::Base
@@ -27,7 +28,7 @@ class Account < ActiveRecord::Base
   }
 
 has_many :rate, class_name: "rating", foreign_key: "rate"
-has_many :followship, class_name: "followship", foreign_key: "followship_id"
-belongs_to :follower, class_name: "followship", foreign_key: "followship_id"
+has_many :followship, class_name: "followship", foreign_key: "followship"
+belongs_to :follower, class_name: "followship", foreign_key: "followship"
 
 end

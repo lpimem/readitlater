@@ -22,4 +22,9 @@ class Account < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  has_many :followships, foreign_key: "followship"
+  has_many :followers, through: :followships, foreign_key: "follower"
+  has_many :followingships, foreign_key: "followingship"
+  has_many :followings, through: :followships, foreign_key: "following"
 end

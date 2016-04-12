@@ -28,6 +28,6 @@ class Account < ActiveRecord::Base
 
 has_many :rate, class_name: "rating", foreign_key: "rate"
 has_many :followship, class_name: "followship", foreign_key: "followship_id"
-belong_to :follower, class_name: "followship", foreign_key: "followship_id"
+belongs_to :follower, class_name: "followship", foreign_key: "followship_id"
 
 end

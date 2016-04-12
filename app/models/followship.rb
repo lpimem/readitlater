@@ -9,5 +9,6 @@
 #
 
 class Followship < ActiveRecord::Base
-
+	has_many :followers, class_name: "account", foreign_key: "user"
+	belongs_to :user, class_name: "account", foreign_key: "user"
 end

@@ -29,6 +29,8 @@ class Account < ActiveRecord::Base
   has_many :followingships, foreign_key: "followingship"
   has_many :followings, through: :followships, foreign_key: "following"
 
+
+#self-joins
 # has_many :followers, class_name: "account", foreign_key: "followship"
 # belongs_to :following, class_name: "account", foreign_key: "follower" 
 end

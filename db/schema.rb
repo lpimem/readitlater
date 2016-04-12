@@ -34,10 +34,9 @@ ActiveRecord::Schema.define(version: 20160412213906) do
   create_table "followships", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "user_id"
+    t.string   "following"
+    t.string   "follower"
   end
-
-  add_index "followships", ["user_id"], name: "index_followships_on_user_id"
 
   create_table "links", force: :cascade do |t|
     t.string   "url"

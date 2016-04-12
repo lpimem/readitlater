@@ -12,7 +12,7 @@ link3 = Link.create!(url:'http://lsa.colorado.edu/papers/dp1.LSAintro.pdf',title
 link4 = Link.create!(url:'http://bluebrain.epfl.ch/',title:'Blue Brain',description:'This is a project by IBM',level:2)
 
 
-acount1 = Account.create!(
+account1 = Account.create!(
   username: "test_user_lp_1",
   password: "test_user_lp_12345",
   level: 1
@@ -46,8 +46,6 @@ rate4 = Rating.create!(value: 40)
 rate5 = Rating.create!(value: 1)
 rate6 = Rating.create!(value: -3)
 
-
 # account1.followship<<acount2<<account3
 # account2.followship<<acount3<<account4
 # account3.followship<<aoount4<<account1
-

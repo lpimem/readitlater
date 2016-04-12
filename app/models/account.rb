@@ -17,6 +17,7 @@
 #  updated_at             :datetime         not null
 #
 
+
 class Account < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

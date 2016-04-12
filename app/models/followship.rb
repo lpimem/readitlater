@@ -5,10 +5,10 @@
 #  id         :integer          not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  usr_id_id  :integer
+#  user_id    :integer
 #
 
 class Followship < ActiveRecord::Base
 	has_many :followers, class_name: "account", foreign_key: "user"
-	belongs_to :user, class_name: "account", foreign_key: "user"
+	belongs_to :following, class_name: "account", foreign_key: "user"
 end

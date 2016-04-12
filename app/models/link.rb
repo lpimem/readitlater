@@ -19,4 +19,5 @@ class Link < ActiveRecord::Base
 	validates :description, presence: true, length: { maximum: 100}
 
 	has_many :rate, class_name: "rating", foreign_key: "rate_id"
+	
 end

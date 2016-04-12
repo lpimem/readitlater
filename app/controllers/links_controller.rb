@@ -67,6 +67,11 @@ class LinksController < ApplicationController
     "%" + params[:keyword] + "%" )
   end
 
+  def show
+    @links = Link.order("links.created_by")
+    @link = Link.new(link_params)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_link

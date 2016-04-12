@@ -46,6 +46,6 @@ rate4 = Rating.create!(value: 40)
 rate5 = Rating.create!(value: 1)
 rate6 = Rating.create!(value: -3)
 
-# account1.followship<<acount2<<account3
-# account2.followship<<acount3<<account4
-# account3.followship<<aoount4<<account1
+account1.followship<<acount2<<account3
+account2.followship<<acount3<<account4
+account3.followship<<aoount4<<account1

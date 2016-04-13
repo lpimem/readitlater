@@ -25,6 +25,12 @@ rate6 = Rating.create!(value: -3)
 
 # account seed data
 
-
+account1 = Account.create!(email: "test1@memphis.edu", password: "12345678", sign_in_count: 10)
+account2 = Account.create!(email: "test2@memphis.edu", password: "12345678", sign_in_count: 10)
+account3 = Account.create!(email: "test3@memphis.edu", password: "12345678", sign_in_count: 10)
+account4 = Account.create!(email: "test4@memphis.edu", password: "12345678", sign_in_count: 10)
 
 # followship seed data
+
+#account1.followship<<account2<<account3
+#account2.followship<<account4

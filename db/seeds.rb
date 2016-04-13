@@ -53,12 +53,12 @@ link4 = Link.create!(url:'http://bluebrain.epfl.ch/',title:'Blue Brain',descript
 
 # rating seed data
 
-rate1 = Rating.create!(value: 20)
-rate2 = Rating.create!(value: 10)
-rate3 = Rating.create!(value: 25)
-rate4 = Rating.create!(value: 40)
+rate1 = Rating.create!(value: 1)
+rate2 = Rating.create!(value: 1)
+rate3 = Rating.create!(value: 1)
+rate4 = Rating.create!(value: -1)
 rate5 = Rating.create!(value: 1)
-rate6 = Rating.create!(value: -3)
+rate6 = Rating.create!(value: -1)
 
 
 # account seed data
@@ -70,11 +70,8 @@ account4 = Account.create!(email: "test4@memphis.edu", password: "12345678", sig
 
 # followship seed data
 
-# account1.followships = [account2, account3]
-# account2.followships = account4
-
 link1.ratings << rate1 << rate2 << rate3
 link2.ratings << rate4 << rate5
 link3.ratings << rate6
 
-account1.followships << acocount1 << account2
+account1.followships << account2 << account3

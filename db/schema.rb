@@ -31,13 +31,12 @@ ActiveRecord::Schema.define(version: 20160412213906) do
   add_index "accounts", ["email"], name: "index_accounts_on_email", unique: true
   add_index "accounts", ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
 
+
   create_table "followships", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "following"
-    t.string   "follower"
   end
-
+  
   create_table "links", force: :cascade do |t|
     t.string   "url"
     t.string   "title"
@@ -51,11 +50,5 @@ ActiveRecord::Schema.define(version: 20160412213906) do
     t.integer  "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "link_id"
-    t.integer  "user_id"
-  end
-
-  add_index "ratings", ["link_id"], name: "index_ratings_on_link_id"
-  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id"
 
 end

@@ -4,7 +4,7 @@ class LinksController < ApplicationController
   # GET /links
   # GET /links.json
   def index
-    @links = Link.all
+    @links = Link.all.order("links.created_by")
   end
 
   # GET /links/1
@@ -79,8 +79,6 @@ class LinksController < ApplicationController
   end
 
   def show
-    @links = Link.order("links.created_by")
-    @link = Link.new(link_params)
   end
 
   private

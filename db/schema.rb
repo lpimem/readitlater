@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160412213906) do
+ActiveRecord::Schema.define(version: 20160413164802) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -26,18 +26,20 @@ ActiveRecord::Schema.define(version: 20160412213906) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.integer  "followers_id"
   end
 
   add_index "accounts", ["email"], name: "index_accounts_on_email", unique: true
+  add_index "accounts", ["followers_id"], name: "index_accounts_on_followers_id"
   add_index "accounts", ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
 
   create_table "followships", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "user_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "following_id"
   end
 
-  add_index "followships", ["user_id"], name: "index_followships_on_user_id"
+  add_index "followships", ["following_id"], name: "index_followships_on_following_id"
 
   create_table "links", force: :cascade do |t|
     t.string   "url"
@@ -46,7 +48,10 @@ ActiveRecord::Schema.define(version: 20160412213906) do
     t.integer  "level"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "user_id"
   end
+
+  add_index "links", ["user_id"], name: "index_links_on_user_id"
 
   create_table "ratings", force: :cascade do |t|
     t.integer  "value"

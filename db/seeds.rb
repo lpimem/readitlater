@@ -68,10 +68,14 @@ account2 = Account.create!(email: "test2@memphis.edu", password: "12345678", sig
 account3 = Account.create!(email: "test3@memphis.edu", password: "12345678", sign_in_count: 10)
 account4 = Account.create!(email: "test4@memphis.edu", password: "12345678", sign_in_count: 10)
 
-# followship seed data
+# link-rate seed data
 
 link1.ratings << rate1 << rate2 << rate3
 link2.ratings << rate4 << rate5
 link3.ratings << rate6
 
-account1.followships << account2 << account3
+# followship seed data
+
+# account1.followships << account2 << account3
+
+# Account-link seed data

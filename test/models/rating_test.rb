@@ -6,7 +6,11 @@
 #  value      :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  link_id    :integer
+#  user_id    :integer
 #
+
+
 
 require 'test_helper'
 

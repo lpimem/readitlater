@@ -48,3 +48,5 @@ group :development do
 end
 
 gem 'annotate'
+
+gem 'devise'

@@ -11,6 +11,7 @@
 #  updated_at  :datetime         not null
 #
 
+
 class Link < ActiveRecord::Base
 
 	validates :url, presence: true, format: { with: /\Ahttps?:\/\/.+/i }

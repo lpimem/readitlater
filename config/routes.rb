@@ -1,13 +1,28 @@
 Rails.application.routes.draw do
+  
+  devise_for :accounts
   resources :followships
   resources :ratings
   resources :accounts
   resources :links
 
-  root 'static_pages#home'
 
   get 'search', to: 'links#search'
+  get 'filter_following', to: 'links#filter_following'
 
+  devise_scope :account do
+    authenticated :account do
+     root to: "static_pages#home", as: :authenticated_root
+    end
+
+    unauthenticated do
+     root to: "static_pages#home", as: :unauthenticated_root
+    end
+
+  end
+
+  # should be at bottom-- for default page
+  # root to: "static_pages#home"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

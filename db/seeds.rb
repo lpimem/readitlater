@@ -32,7 +32,7 @@ Account.create!(
 
 #rating seed data
 
-Rate.create!(value: 20)
-Rate.create!(value: 10)
-Rate.create!(value: 25)
-Rate.create!(value: 40)
+Rating.create!(value: 20)
+Rating.create!(value: 10)
+Rating.create!(value: 25)
+Rating.create!(value: 40)

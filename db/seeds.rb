@@ -32,5 +32,7 @@ account4 = Account.create!(email: "test4@memphis.edu", password: "12345678", sig
 
 # followship seed data
 
-#account1.followship<<account2<<account3
-#account2.followship<<account4
+# account1.followships = [account2, account3]
+# account2.followships = account4
+
+# link1.rating<<rate1<<rate2<<rate3

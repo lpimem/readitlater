@@ -49,7 +49,10 @@ link2 = Link.create!(url:'https://en.wikipedia.org/wiki/Theory_of_computation',t
 link3 = Link.create!(url:'http://lsa.colorado.edu/papers/dp1.LSAintro.pdf',title:'Latent semantic analysis',description:'It addresses the concept of LSA in detail',level:2)
 link4 = Link.create!(url:'http://bluebrain.epfl.ch/',title:'Blue Brain',description:'This is a project by IBM',level:2)
 
-
+link1.save!
+link2.save!
+link3.save!
+link4.save!
 
 # rating seed data
 
@@ -68,7 +71,11 @@ account2 = Account.create!(email: "test2@memphis.edu", password: "12345678", sig
 account3 = Account.create!(email: "test3@memphis.edu", password: "12345678", sign_in_count: 10)
 account4 = Account.create!(email: "test4@memphis.edu", password: "12345678", sign_in_count: 10)
 
-# link-rate seed data
+account1.save!
+account2.save!
+account3.save!
+account4.save!
+# link-rate seed data (work)
 
 link1.ratings << rate1 << rate2 << rate3
 link2.ratings << rate4 << rate5
@@ -78,4 +85,15 @@ link3.ratings << rate6
 
 # account1.followships << account2 << account3
 
-# Account-link seed data
+# Account-link seed data (work)
+
+account1.links << link1
+account2.links << link2
+account3.links << link3
+account4.links << link4
+
+# account-rate seed data ()
+
+account1.ratings << rate1 << rate4 << rate6
+account2.ratings << rate2 << rate5
+account3.ratings << rate3

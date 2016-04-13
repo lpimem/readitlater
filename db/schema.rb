@@ -48,10 +48,10 @@ ActiveRecord::Schema.define(version: 20160413164802) do
     t.integer  "level"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "user_id"
+    t.integer  "account_id"
   end
 
-  add_index "links", ["user_id"], name: "index_links_on_user_id"
+  add_index "links", ["account_id"], name: "index_links_on_account_id"
 
   create_table "ratings", force: :cascade do |t|
     t.integer  "value"

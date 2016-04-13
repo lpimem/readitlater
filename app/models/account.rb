@@ -24,12 +24,20 @@ class Account < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  # Many to many association between account and followship
+  
   has_many :followships, class_name: "followship", foreign_key: "followship_id"
   has_many :followers, through: :followships, class_name: "account", foreign_key: "follower_id"
   has_many :followingships, class_name: "followship", foreign_key: "followingship_id"
   has_many :followings, through: :followships, class_name: "account", foreign_key: "following_id"
 
+  # One to many association between account and link
+
   has_many :links
+
+  # One to many association between account and rating
+
+  has_many :ratings
 
 
 #self-joins

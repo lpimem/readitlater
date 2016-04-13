@@ -14,7 +14,7 @@
 
 class Rating < ActiveRecord::Base
 	
-	belongs_to :user, class_name: "account", foreign_key: "user"
-	belongs_to :link, class_name: "link", foreign_key: "link"
+	belongs_to :user, class_name: "account", foreign_key: "user_id"
+	belongs_to :link, class_name: "link", foreign_key: "link_id"
 
 end

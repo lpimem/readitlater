@@ -73,4 +73,8 @@ account4 = Account.create!(email: "test4@memphis.edu", password: "12345678", sig
 # account1.followships = [account2, account3]
 # account2.followships = account4
 
-# link1.rating<<rate1<<rate2<<rate3
+link1.ratings << rate1 << rate2 << rate3
+link2.ratings << rate4 << rate5
+link3.ratings << rate6
+
+account1.followships << acocount1 << account2

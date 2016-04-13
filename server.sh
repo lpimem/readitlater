@@ -24,6 +24,7 @@ elif [ $CMD = "stop" ]; then
   if [ -f $PID_FILE ]; then
     PID=$(<$PID_FILE)
     kill $PID
+    rm $PID_FILE
   else
     echo "Not running"
   fi
@@ -32,6 +33,6 @@ elif [ $CMD = "restart" ]; then
   ./server.sh start
 elif [ $CMD = "reset" ]; then
   ./server.sh stop
-  rake db:migrate:reset
+  rake db:migrate:reset ; rake db:seed
   ./server.sh start
 fi

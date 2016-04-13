@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -13,23 +12,23 @@ Link.create!(url:'http://lsa.colorado.edu/papers/dp1.LSAintro.pdf',title:'Latent
 Link.create!(url:'http://bluebrain.epfl.ch/',title:'Blue Brain',description:'This is a project by IBM',level:2)
 
 
-Account.create!(
-  username: "test_user_lp_1",
-  password: "test_user_lp_12345",
-  level: 1
-)
-
-Account.create!(
-  username: "test_user_lp_2",
-  password: "test_user_lp_12345",
-  level: 1
-)
-
-Account.create!(
-  username: "test_user_lp_3",
-  password: "test_user_lp_12345",
-  level: 1
-)
+# Account.create!(
+#   username: "test_user_lp_1",
+#   password: "test_user_lp_12345",
+#   level: 1
+# )
+#
+# Account.create!(
+#   username: "test_user_lp_2",
+#   password: "test_user_lp_12345",
+#   level: 1
+# )
+#
+# Account.create!(
+#   username: "test_user_lp_3",
+#   password: "test_user_lp_12345",
+#   level: 1
+# )
 
 #rating seed data
 
@@ -37,7 +36,6 @@ Rating.create!(value: 20)
 Rating.create!(value: 10)
 Rating.create!(value: 25)
 Rating.create!(value: 40)
-=======
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #

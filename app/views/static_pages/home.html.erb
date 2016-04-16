@@ -1,11 +1,12 @@
 <% if  account_signed_in? %>
 <div class="right-nav mt-10">
-	<% if current_account.level==1 %>
-	<input type="button" class="button" value="VIEW REPORT">
+	<% if current_account.has_attribute?("level") && current_account.level == 1 %>
+		<input type="button" class="button" value="VIEW REPORT">
+		<input type="button" class="button" value="PUBLISH">
 	<% else %>
-	<input type="button" class="button" value="PUBLISH">
+		<input type="button" class="button" value="PUBLISH">
 	<% end %>
-	
+
 </div>
 <% end %>
 <div class="clearfix mt-10">

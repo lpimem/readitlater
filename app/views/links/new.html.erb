@@ -1,5 +1,4 @@
 <h1>New Link</h1>
 
 <%= render 'form' %>
-
-<%= link_to 'Back', links_path %>
+<input type="button" class="button" style='float:right' value="Cancel" onclick="window.location.href='<%= authenticated_root_path %>'">

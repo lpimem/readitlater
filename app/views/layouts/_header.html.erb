@@ -1,7 +1,12 @@
-<h1 class="heading">Read It Later!<h1>
+<h1 class="heading"><a href="/" >Read It Later!</a><h1>
 <%= render partial: "links/searchbar" %>
 <div class="right-nav">
-	<input type="button" class="button" value="SIGN UP">
-	<input type="button" class="button" value="LOGIN">
+  <% if account_signed_in? %>
+  	  <%= link_to('Logout', destroy_account_session_path, :method => :delete) %>        
+    <% else %>
+      <input type="submit" class="button" value="SIGN UP" onclick="window.location='<%= new_account_registration_path %>'">
+      <input type="submit" class="button" value="LOGIN" onclick="window.location='<%= new_account_session_path %>'">
+    <% end %>
+
 </div>
 <div class="clearfix"></div>

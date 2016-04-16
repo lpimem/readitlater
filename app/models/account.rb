@@ -2,27 +2,35 @@
 #
 # Table name: accounts
 #
-#  id         :integer          not null, primary key
-#  username   :string
-#  password   :string
-#  level      :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id                     :integer          not null, primary key
+#  email                  :string           default(""), not null
+#  encrypted_password     :string           default(""), not null
+#  reset_password_token   :string
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer          default("0"), not null
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :string
+#  last_sign_in_ip        :string
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  level                  :integer
 #
 
 class Account < ActiveRecord::Base
-  
-  validates :username, presence: true,
-      uniqueness: true, format: {
-        with: /\w[\w\d_]*/,
-        message: "username must start with a letter, and can only contains letters, digits and underscores"
-      }
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
 
-  validates :password, presence: true
+  has_many :followships, class_name: "followship", foreign_key: "followship"
+  has_many :followers, through: :followships, class_name: "account", foreign_key: "follower"
+  has_many :followingships, class_name: "followship", foreign_key: "followingship"
+  has_many :followings, through: :followships, class_name: "account", foreign_key: "following"
 
-  validates :level, presence: true, numericality: {
-    only_integer: true,
-    greater_than_or_equal_to: 0,
-    less_than_or_equal_to: 2
-  }
+
+#self-joins
+# has_many :followers, class_name: "account", foreign_key: "followship"
+# belongs_to :following, class_name: "account", foreign_key: "follower" 
 end

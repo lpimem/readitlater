@@ -39,12 +39,7 @@ class LinkTest < ActiveSupport::TestCase
      assert test1.invalid?
   end
 
-  test "Link with non-unique URL should be invalid" do
-     test2=links(:test2)
-     test2.url="http://google.com"
-     assert test2.invalid?
-  end
-
+  
    test "Link should be invalid if has invalid url" do
     test1 = links(:test1)
     test1.url = 'hwy.com'

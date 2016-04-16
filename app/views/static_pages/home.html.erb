@@ -1,14 +1,27 @@
+<% if  account_signed_in? %>
 <div class="right-nav mt-10">
+	<% if current_account.level==1 %>
 	<input type="button" class="button" value="VIEW REPORT">
+	<% else %>
 	<input type="button" class="button" value="PUBLISH">
+	<% end %>
+	
 </div>
-
+<% end %>
 <div class="clearfix mt-10">
 </div>
 <div class="right mt-10">
-		<input type="checkbox" class="button"> Show only follower links
+		<input id='cb_filter_following' type="checkbox" class="button"> Show only follower links
 </div>
 <div class="clearfix">
 </div>
 
 <%= render partial: "links/links" %>
+
+<script>
+  $().ready(function(){
+    $("#cb_filter_following").click(function(){
+      window.location.href = "filter_following";
+    });
+  });
+</script>

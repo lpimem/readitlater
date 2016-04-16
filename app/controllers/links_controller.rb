@@ -4,7 +4,7 @@ class LinksController < ApplicationController
   # GET /links
   # GET /links.json
   def index
-    @links = Link.all
+     @links = Link.all.order("links.created_at")
   end
 
   # GET /links/1
@@ -63,8 +63,17 @@ class LinksController < ApplicationController
 
   def search
     @links = Link.where("title like ? or description like ?",
-    "%" + params[:keyword] + "%",
-    "%" + params[:keyword] + "%" )
+      "%" + params[:keyword] + "%",
+      "%" + params[:keyword] + "%" ).order("links.created_at")
+  end
+
+  def filter_following
+    # TODO: get followed user list from db/model
+    # mock up : get the first two users as following accounts
+    following = Account.first(2)
+
+    # TODO select links posted by these accounts
+    @links = Link.first(2)
   end
 
   private

@@ -32,6 +32,6 @@ elif [ $CMD = "restart" ]; then
   ./server.sh start
 elif [ $CMD = "reset" ]; then
   ./server.sh stop
-  rake db:migrate:reset
+  rake db:migrate:reset ; rake db:seed
   ./server.sh start
 fi

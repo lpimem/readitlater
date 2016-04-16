@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   resources :followships
   resources :ratings
   resources :accounts
-  resources :links
 
 
   get 'search', to: 'links#search'
@@ -13,6 +12,9 @@ Rails.application.routes.draw do
   devise_scope :account do
     authenticated :account do
      root to: "static_pages#home", as: :authenticated_root
+     resources :links
+     resources :reports
+     get 'report/:id', to: 'reports#new', as: :report_link
     end
 
     unauthenticated do

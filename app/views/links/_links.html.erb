@@ -3,11 +3,14 @@
     	<a href="<%= link.url %>" target="_blank"><h5><%= link.title %></h5></a>
 		<p class="mt-10"><%= link.description %></p>
 		<p class="mt-10">Date Published: <%= link.created_at.to_formatted_s(:long_ordinal) %></p>
+
+		<% if account_signed_in? %>
 		<input type="button" class="button mt-10" value="Rate Up">
-		<input type="button" class="button mt-10" value="Rate Down"
+		<input type="button" class="button mt-10" value="Rate Down">
 		<input type="button" class="button mt-10" value="COMMENT">
 		<input type="button" class="button mt-10" value="PUBLISHER">
-		<input type="button" class="button mt-10" value="REPORT LINK">
+		<input type="button" class="button mt-10" value="REPORT LINK" onclick="window.location='/report/<%= link.id %>'">
+		<% end %>
 	</div>
 <% end %>
 

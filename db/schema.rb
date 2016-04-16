@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20160413164802) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.integer  "followers_id"
+    t.integer  "level"
   end
 
   add_index "accounts", ["email"], name: "index_accounts_on_email", unique: true
@@ -63,5 +64,14 @@ ActiveRecord::Schema.define(version: 20160413164802) do
 
   add_index "ratings", ["link_id"], name: "index_ratings_on_link_id"
   add_index "ratings", ["user_id"], name: "index_ratings_on_user_id"
+
+  create_table "reports", force: :cascade do |t|
+    t.text     "reason"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "link_id"
+  end
+
+  add_index "reports", ["link_id"], name: "index_reports_on_link_id"
 
 end

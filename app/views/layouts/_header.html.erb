@@ -1,18 +1,19 @@
-<h1 class="heading">Read It Later!<h1>
+<h1 class="heading"><a href="/" >Read It Later!</a><h1>
 <%= render partial: "links/searchbar" %>
 <div class="right-nav">
-	<% if account_signed_in? %>
-  	  <li>
-  	  <%= link_to('Logout', destroy_account_session_path, :method => :delete) %>        
-      </li>
-    <% else %>
-       <li>
-       <%= link_to('Sign up', new_account_registration_path) %>
-       </li>
-       <li>
-       <%= link_to('Login', new_account_session_path) %>  
-       </li>
-    <% end %>
-	
+  <% if account_signed_in? %>
+      <div>
+  	      <%= link_to('Logout', destroy_account_session_path, :method => :delete) %>
+      </div>
+      <% if current_account.has_attribute?("level") && current_account.level == 1 %>
+    		  <input type="button" class="button" value="VIEW REPORT" />
+    	<% end %>
+    	<input type="button" class="button" value="New Link" onclick="window.location.href='<%= new_link_path %>'" />
+  <% else %>
+      <div>
+         <input type="submit" class="button" value="SIGN UP" onclick="window.location='<%= new_account_registration_path %>'" />
+         <input type="submit" class="button" value="LOGIN" onclick="window.location='<%= new_account_session_path %>'" />
+      </div>
+  <% end %>
 </div>
 <div class="clearfix"></div>

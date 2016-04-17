@@ -5,7 +5,8 @@ class StaticPagesController < ApplicationController
   	    @links = Link.all
   end
 
-  def lijiatest
+  def profile
+  	
   end
-  
+
 end

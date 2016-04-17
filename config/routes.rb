@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get 'search', to: 'links#search'
   get 'filter_following', to: 'links#filter_following'
 
+   get 'profile', to: 'static_pages#profile'
+
   devise_scope :account do
     authenticated :account do
      root to: "static_pages#home", as: :authenticated_root
@@ -20,6 +22,7 @@ Rails.application.routes.draw do
 
     unauthenticated do
      root to: "static_pages#home", as: :unauthenticated_root
+     #get 'profile', to: 'static_pages#profile',as: 'profile'
     end
 
   end

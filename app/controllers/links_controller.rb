@@ -63,12 +63,14 @@ class LinksController < ApplicationController
   end
 
   def filter_following
-    # TODO: get followed user list from db/model
-    # mock up : get the first two users as following accounts
-    following = Account.first(2)
-
-    # TODO select links posted by these accounts
-    @links = Link.first(2)
+    if current_user
+      @links = Link.joins(
+        'LEFT INNER JOIN accounts as a on a.id = links.account_id
+        LEFT INNER JOIN followships as f on a.id = f.following_id')
+        .where("f.follower_id = ?", current_user.id)
+    else
+      redirect_to unauthenticated_root_path, notice: 'You are not logged in.'
+    end
   end
 
   private

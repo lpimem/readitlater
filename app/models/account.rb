@@ -27,11 +27,12 @@ class Account < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Many to many association between account and followship
-  
-  has_many :followships, class_name: "followship", foreign_key: "followship_id"
-  has_many :followers, through: :followships, class_name: "account", foreign_key: "follower_id"
-  has_many :followingships, class_name: "followship", foreign_key: "followingship_id"
-  has_many :followings, through: :followships, class_name: "account", foreign_key: "following_id"
+  # relations for one's followers
+  has_many :followships, foreign_key: "following_id"
+  has_many :followers, through: :followships, foreign_key: "following_id"
+  # relations for one's followings
+  has_many :followingships, class_name: "Followship", foreign_key: "follower_id"
+  has_many :followings, through: :followingships, foreign_key: "follower_id", source: "account"
 
   # One to many association between account and link
 
@@ -44,5 +45,5 @@ class Account < ActiveRecord::Base
 
 #self-joins
 # has_many :followers, class_name: "account", foreign_key: "followship"
-# belongs_to :following, class_name: "account", foreign_key: "follower" 
+# belongs_to :following, class_name: "account", foreign_key: "follower"
 end

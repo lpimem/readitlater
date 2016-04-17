@@ -18,6 +18,10 @@ link3.save!
 link4 = Link.create!(url:'http://bluebrain.epfl.ch/',title:'Blue Brain',description:'This is a project by IBM',level:2)
 link4.created_at = (rand*10).days.ago
 link4.save!
+link5 = Link.create!(url:'http://guides.rubyonrails.org/',title:'Learn Ruby in 5 days',description:'A tutorial which can teach you ruby in 5 days',level:2)
+link5.created_at = (rand*10).days.ago
+link5.save!
+
 
 
 # rating seed data

@@ -10,6 +10,8 @@
   		<p class="mt-10">Date Published: <%= link.created_at.to_formatted_s(:long_ordinal) %></p>
 
 
+  		<!-- Sum rating -->
+
 		<% sum = 0 %>
 		<% link.ratings.each do |rating| %>
 			<% sum = sum + rating.value; %>
@@ -17,6 +19,9 @@
 		<%= sum %>
 
 		<% if account_signed_in? %>
+
+		<!-- rate only once function -->
+
 			<% i = 0 %>
 			<% current_account.ratings.each do |rate| %>
 			  <%if rate.link_id == link.id  %>
@@ -24,10 +29,22 @@
 			  	<% next %>
 			  <% end %>
 			<% end %>  
-			<% if i==0 %>
-				<input type="button" class="button mt-10" value="Rate Up" onclick= "">
-  				<input type="button" class="button mt-10" value="Rate Down" onclick= "">
-  			<% end %>	
+			
+			<!-- rate 1 or -1 -->
+
+			<% if i==0 %> 
+				<!-- <input type="button" id="rateup" class="button mt-10" value="Rate Up" onclick= ""> -->
+				<%= form_for(@rating) do |f| %>
+					<div style="display:hidden">
+						<input type="number" value="1" name="rating[value]" id="rating_value" />
+						<input type="number" value="<%= link.id %>" name="rating[link_id]" id="rating_link_id" />
+					</div>
+					 	<input type="submit" name="commit" value="Up" />
+				<% end %>
+  				<input type="button" id="ratedown" class="button mt-10" value="Rate Down" onclick= "location.reload()">
+  			<% end %>
+
+
   			<input type="button" class="button mt-10" value="COMMENT">
 			<input type="button" class="button mt-10" value="PUBLISHER">
 			<input type="button" class="button mt-10" value="REPORT LINK" onclick="window.location='/report/<%= link.id %>'">

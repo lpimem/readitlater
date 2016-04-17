@@ -37,6 +37,24 @@ class RatingsController < ApplicationController
     end
   end
 
+  def rateup
+    Rating.new(value: 1, link_id: link.id, account_id: current_account.id)
+  end
+
+  def ratedown
+    @rating = Rating.new(rating_params)
+
+    respond_to do |format|
+      if @rating.save
+        format.html { redirect_to @rating, notice: 'Rating was successfully created.' }
+        format.json { render :show, status: :created, location: @rating }
+      else
+        format.html { render :new }
+        format.json { render json: @rating.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # PATCH/PUT /ratings/1
   # PATCH/PUT /ratings/1.json
   def update
@@ -69,6 +87,6 @@ class RatingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rating_params
-      params.require(:rating).permit(:value)
+      params.require(:rating).permit(:value, :link_id)
     end
 end

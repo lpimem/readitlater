@@ -26,15 +26,6 @@ Rails.application.routes.draw do
 
 
 
-  # routes for Lijiatest page
-
-  get 'lijiatest' , to: 'static_pages#lijiatest', as:"lijiatest";
-
-  # get "accounts" , to: "accounts#index", as: "accounts_index";
-  get "/links/list" , to: "links#list", as: "links_list";
-  get "/ratings/list" , to: "ratings#list", as: "ratings_list";
-  get "/followships/list" , to: "followships#list", as: "followships_list";
-
   # get '/accounts/index', to: 'accounts#index', as: 'account_index'
   # post '/accounts/index', to: 'accounts#index'
 

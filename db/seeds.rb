@@ -46,7 +46,7 @@ followship2 = Followship.create!(follower_id: 3, following_id: 1)
 followship3 = Followship.create!(follower_id: 4, following_id: 2)
 foolowship4 = Followship.create!(follower_id: 1, following_id: 3)
 
-# link-rate seed data (work)
+# link-rate seed data
 
 link1.ratings << rate1 << rate2 << rate3
 link2.ratings << rate4 << rate5
@@ -69,4 +69,3 @@ account1.save!
 account2.save!
 account3.save!
 account4.save!
-

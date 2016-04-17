@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   resources :profiles
   devise_for :accounts
   resources :followships
@@ -15,26 +15,18 @@ Rails.application.routes.draw do
 
   devise_scope :account do
     authenticated :account do
-     root to: "static_pages#home", as: :authenticated_root
+     root to: "links#index", as: :authenticated_root
      resources :links
      resources :reports
      get 'report/:id', to: 'reports#new', as: :report_link
     end
 
     unauthenticated do
-     root to: "static_pages#home", as: :unauthenticated_root
+     root to: "links#index", as: :unauthenticated_root
      #get 'profile', to: 'static_pages#profile',as: 'profile'
     end
 
   end
-
-
-
-  # get '/accounts/index', to: 'accounts#index', as: 'account_index'
-  # post '/accounts/index', to: 'accounts#index'
-
-  # get '/links/index', to: 'links#index', as: 'link_index'
-  # post '/links/index', to: 'links#index'
 
   # should be at bottom-- for default page
   # root to: "static_pages#home"
@@ -85,7 +77,7 @@ Rails.application.routes.draw do
   #     post 'toggle'
   #   end
   #   resources :posts, concerns: :toggleable
-  #   resources photos, concerns: :toggleable
+  #   resources :photos, concerns: :toggleable
 
   # Example resource route within a namespace:
   #   namespace :admin do

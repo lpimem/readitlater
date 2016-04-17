@@ -10,5 +10,7 @@
 #
 
 class Report < ActiveRecord::Base
-	belongs_to :link 
+    #validations	
+    validates :reason, presence: true 
+    belongs_to :link 
 end

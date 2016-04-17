@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :followships
   resources :ratings
   resources :accounts
+  resources :links
 
 
   get 'search', to: 'links#search'
@@ -27,7 +28,7 @@ Rails.application.routes.draw do
 
   # routes for Lijiatest page
 
-  get 'lijiatest' , to: 'static_pages#lijiatest', as:"lijiatest"
+  get 'lijiatest' , to: 'static_pages#lijiatest', as:"lijiatest";
 
   # get "accounts" , to: "accounts#index", as: "accounts_index";
   get "/links/list" , to: "links#list", as: "links_list";

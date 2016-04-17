@@ -5,7 +5,14 @@ class LinksController < ApplicationController
   # GET /links
   # GET /links.json
   def index
-     @links = Link.all.order("links.created_at")
+     if account_signed_in?
+       pub_links = get_public_links
+       pri_links = get_only_for_follower_links
+       links_by_me = get_links_by_account current_account.id
+       @links = pub_links + pri_links + links_by_me
+     else
+       @links = get_public_links
+     end
   end
 
   # GET /links/1
@@ -26,6 +33,7 @@ class LinksController < ApplicationController
   # POST /links.json
   def create
     @link = Link.new(link_params)
+    @link.account_id = current_account.id
     if @link.save
       redirect_to authenticated_root_path, notice: 'Link was successfully created.'
     else
@@ -65,10 +73,7 @@ class LinksController < ApplicationController
 
   def filter_following
     if current_account
-      @links = Link.joins(
-        'LEFT JOIN accounts as a on a.id = links.account_id
-        LEFT JOIN followships as f on a.id = f.following_id')
-        .where("f.follower_id = ?", current_account.id)
+      @links = get_followed_links
     else
       redirect_to unauthenticated_root_path, notice: 'You are not logged in.'
     end
@@ -78,6 +83,30 @@ class LinksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_link
       @link = Link.find(params[:id])
+    end
+
+    # query links shared with public
+    def get_public_links
+      Link.where("level = 1")
+    end
+
+    # query links shared with current account
+    def get_followed_links
+      Link.joins(
+        'LEFT JOIN accounts as a on a.id = links.account_id
+        LEFT JOIN followships as f on a.id = f.following_id')
+        .where("f.follower_id = ?", current_account.id)
+    end
+
+    def get_only_for_follower_links
+      Link.joins(
+        'LEFT JOIN accounts as a on a.id = links.account_id
+        LEFT JOIN followships as f on a.id = f.following_id')
+        .where("links.level=2 and f.follower_id = ?", current_account.id)
+    end
+
+    def get_links_by_account(account_id)
+      Link.where("account_id = ?", account_id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

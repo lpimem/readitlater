@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160413164802) do
+ActiveRecord::Schema.define(version: 20160416065136) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -26,21 +26,21 @@ ActiveRecord::Schema.define(version: 20160413164802) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.integer  "followers_id"
+    t.integer  "followship_id"
     t.integer  "level"
   end
 
   add_index "accounts", ["email"], name: "index_accounts_on_email", unique: true
-  add_index "accounts", ["followers_id"], name: "index_accounts_on_followers_id"
+  add_index "accounts", ["followship_id"], name: "index_accounts_on_followship_id"
   add_index "accounts", ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
 
   create_table "followships", force: :cascade do |t|
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.integer  "following_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "account_id"
   end
 
-  add_index "followships", ["following_id"], name: "index_followships_on_following_id"
+  add_index "followships", ["account_id"], name: "index_followships_on_account_id"
 
   create_table "links", force: :cascade do |t|
     t.string   "url"

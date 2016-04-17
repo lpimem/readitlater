@@ -7,6 +7,10 @@ class FollowshipsController < ApplicationController
     @followships = Followship.all
   end
 
+  def list
+    @followships = Followship.all
+  end
+  
   # GET /followships/1
   # GET /followships/1.json
   def show

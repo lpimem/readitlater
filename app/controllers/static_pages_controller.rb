@@ -4,4 +4,8 @@ class StaticPagesController < ApplicationController
   def home
   	    @links = Link.all
   end
+
+  def lijiatest
+  end
+  
 end

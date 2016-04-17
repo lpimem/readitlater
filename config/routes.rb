@@ -23,6 +23,23 @@ Rails.application.routes.draw do
 
   end
 
+
+
+  # routes for Lijiatest page
+
+  get 'lijiatest' , to: 'static_pages#lijiatest', as:"lijiatest"
+
+  # get "accounts" , to: "accounts#index", as: "accounts_index";
+  get "/links/list" , to: "links#list", as: "links_list";
+  get "/ratings/list" , to: "ratings#list", as: "ratings_list";
+  get "/followships/list" , to: "followships#list", as: "followships_list";
+
+  # get '/accounts/index', to: 'accounts#index', as: 'account_index'
+  # post '/accounts/index', to: 'accounts#index'
+
+  # get '/links/index', to: 'links#index', as: 'link_index'
+  # post '/links/index', to: 'links#index'
+
   # should be at bottom-- for default page
   # root to: "static_pages#home"
 
@@ -72,7 +89,7 @@ Rails.application.routes.draw do
   #     post 'toggle'
   #   end
   #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
+  #   resources photos, concerns: :toggleable
 
   # Example resource route within a namespace:
   #   namespace :admin do

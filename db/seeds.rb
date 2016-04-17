@@ -6,20 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-#rating seed data
-
-Rating.create!(value: 20)
-Rating.create!(value: 10)
-Rating.create!(value: 25)
-Rating.create!(value: 40)
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
 link1 = Link.create!(url:'https://www.youtube.com/watch?v=TnXXR7IOYiI&feature=youtu.be',title:'Ruby on Rails tutorial',description:'This is a very useful tutorial for creating model class',level:2)
 link1.created_at = (rand*10).days.ago
 link1.save!
@@ -77,9 +63,9 @@ account4.links << link4
 
 # account-rate seed data ()
 
-account1.ratings << rate1 << rate4 << rate6
-account2.ratings << rate2 << rate5
-account3.ratings << rate3
+#account1.ratings << rate1 << rate4 << rate6
+#account2.ratings << rate2 << rate5
+#account3.ratings << rate3
 
 account1.save!
 account2.save!

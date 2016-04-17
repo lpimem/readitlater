@@ -4,6 +4,11 @@
 		<p class="mt-10"><%= link.description %></p>
 		<p class="mt-10">Date Published: <%= link.created_at.to_formatted_s(:long_ordinal) %></p>
 
+		<% sum = 0 %>
+		<% @links.ratings.each do |link| %>
+			<% sum = sum + links.ratings.value %>
+		<% end %>
+		<%= sum %>
 		<% if account_signed_in? %>
 		
 		<input type="button" class="button mt-10" value="Rate Up">

@@ -1,4 +1,5 @@
 class LinksController < ApplicationController
+  before_action :authenticate_account!, only: [:filter_following]
   before_action :set_link, only: [:show, :edit, :update, :destroy]
 
   # GET /links
@@ -63,11 +64,11 @@ class LinksController < ApplicationController
   end
 
   def filter_following
-    if current_user
+    if current_account
       @links = Link.joins(
-        'LEFT INNER JOIN accounts as a on a.id = links.account_id
-        LEFT INNER JOIN followships as f on a.id = f.following_id')
-        .where("f.follower_id = ?", current_user.id)
+        'LEFT JOIN accounts as a on a.id = links.account_id
+        LEFT JOIN followships as f on a.id = f.following_id')
+        .where("f.follower_id = ?", current_account.id)
     else
       redirect_to unauthenticated_root_path, notice: 'You are not logged in.'
     end

@@ -26,6 +26,7 @@ Rails.application.routes.draw do
      #get 'profile', to: 'static_pages#profile',as: 'profile'
     end
 
+  get 'rateup', to: 'ratings#rateup'
   end
 
   # should be at bottom-- for default page

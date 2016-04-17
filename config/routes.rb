@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-
+  
+  resources :profiles
   devise_for :accounts
   resources :followships
   resources :ratings
   resources :accounts
+  resources :links
 
 
   get 'search', to: 'links#search'

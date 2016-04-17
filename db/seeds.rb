@@ -63,9 +63,9 @@ account4.links << link4
 
 # account-rate seed data ()
 
-#account1.ratings << rate1 << rate4 << rate6
-#account2.ratings << rate2 << rate5
-#account3.ratings << rate3
+account1.ratings << rate1 << rate4 << rate6
+account2.ratings << rate2 << rate5
+account3.ratings << rate3
 
 account1.save!
 account2.save!

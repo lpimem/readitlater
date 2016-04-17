@@ -1,4 +1,5 @@
 class LinksController < ApplicationController
+  before_action :authenticate_account!, only: [:filter_following]
   before_action :set_link, only: [:show, :edit, :update, :destroy]
 
   # GET /links
@@ -25,15 +26,10 @@ class LinksController < ApplicationController
   # POST /links.json
   def create
     @link = Link.new(link_params)
-
-    respond_to do |format|
-      if @link.save
-        format.html { redirect_to @link, notice: 'Link was successfully created.' }
-        format.json { render :show, status: :created, location: @link }
-      else
-        format.html { render :new }
-        format.json { render json: @link.errors, status: :unprocessable_entity }
-      end
+    if @link.save
+      redirect_to authenticated_root_path, notice: 'Link was successfully created.'
+    else
+      render :new
     end
   end
 
@@ -68,12 +64,14 @@ class LinksController < ApplicationController
   end
 
   def filter_following
-    # TODO: get followed user list from db/model
-    # mock up : get the first two users as following accounts
-    following = Account.first(2)
-
-    # TODO select links posted by these accounts
-    @links = Link.first(2)
+    if current_account
+      @links = Link.joins(
+        'LEFT JOIN accounts as a on a.id = links.account_id
+        LEFT JOIN followships as f on a.id = f.following_id')
+        .where("f.follower_id = ?", current_account.id)
+    else
+      redirect_to unauthenticated_root_path, notice: 'You are not logged in.'
+    end
   end
 
   private

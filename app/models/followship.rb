@@ -10,6 +10,6 @@
 
 
 class Followship < ActiveRecord::Base
-	belongs_to :followers, class_name: "account", foreign_key: "user_id"
-	belongs_to :following, class_name: "account", foreign_key: "following_id"
+	belongs_to :followers, class_name: "Account", foreign_key: "follower_id"
+	belongs_to :following, class_name: "Account", foreign_key: "following_id"
 end

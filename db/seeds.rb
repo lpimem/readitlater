@@ -22,6 +22,17 @@ link5 = Link.create!(url:'http://guides.rubyonrails.org/',title:'Learn Ruby in 5
 link5.created_at = (rand*10).days.ago
 link5.save!
 
+link6 = Link.create!(url:'https://www.railstutorial.org/',title:'Learn Rails in 3 days',description:'A tutorial which can teach you ruby in 5 days',level:2)
+link6.created_at = (rand*10).days.ago
+link6.save!
+link7 = Link.create!(url:'https://www.railstutorial.org/book',title:'Rails Book',description:'A tutorial which can teach you ruby in 5 days',level:2)
+link7.created_at = (rand*10).days.ago
+link7.save!
+link8 = Link.create!(url:'https://www.railstutorial.org/book/toy_app',title:'Rails Book Chapter 2',description:'A tutorial which can teach you ruby in 5 days',level:2)
+link8.created_at = (rand*10).days.ago
+link8.save!
+
+
 
 
 # rating seed data
@@ -40,13 +51,15 @@ rate6 = Rating.create!(value: -1)
 
 
 # account seed data
-
 account1 = Account.create!(email: "test1@memphis.edu", password: "12345678", sign_in_count: 10, level: 0)
 account2 = Account.create!(email: "test2@memphis.edu", password: "12345678", sign_in_count: 10, level: 0)
 account3 = Account.create!(email: "test3@memphis.edu", password: "12345678", sign_in_count: 10, level: 0)
 account4 = Account.create!(email: "test4@memphis.edu", password: "12345678", sign_in_count: 10, level: 0)
 account5 = Account.create!(email: "admin@memphis.edu", password: "12345678", sign_in_count: 10, level: 1)
 account6 = Account.create!(email: "lwang3@memphis.edu", password: "22222222", sign_in_count: 0, level: 1)
+account_lp_1 = Account.create!(email: "test_user_lp_1@memphis.edu", password: "test_user_lp_12345", sign_in_count: 10, level: 0)
+account_lp_2 = Account.create!(email: "test_user_lp_2@memphis.edu", password: "test_user_lp_12345", sign_in_count: 10, level: 0)
+account_lp_3 = Account.create!(email: "test_user_lp_3@memphis.edu", password: "test_user_lp_12345", sign_in_count: 10, level: 0)
 
 
 # link-rate seed data (work)
@@ -58,6 +71,8 @@ link3.ratings << rate6
 # followship seed data
 
 # account1.followships << account2 << account3
+account_lp_2.followers = [account_lp_3]
+account_lp_2.save!
 
 # Account-link seed data (work)
 
@@ -65,6 +80,8 @@ account1.links << link1
 account2.links << link2
 account3.links << link3
 account4.links << link4
+account_lp_2.links = [link6, link7, link8]
+account_lp_2.save!
 
 # account-rate seed data ()
 
@@ -76,4 +93,3 @@ account1.save!
 account2.save!
 account3.save!
 account4.save!
-

@@ -7,10 +7,6 @@ class LinksController < ApplicationController
      @links = Link.all.order("links.created_at")
   end
 
-  def list
-     @links = Link.all.order("links.created_at")
-  end
-
   # GET /links/1
   # GET /links/1.json
   def show

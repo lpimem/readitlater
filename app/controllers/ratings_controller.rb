@@ -7,10 +7,6 @@ class RatingsController < ApplicationController
     @ratings = Rating.all
   end
 
-  def list
-    @ratings = Rating.all
-  end
-
   # GET /ratings/1
   # GET /ratings/1.json
   def show

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   devise_for :accounts
   resources :followships
   resources :ratings
@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   devise_scope :account do
     authenticated :account do
      root to: "static_pages#home", as: :authenticated_root
+     get 'links', to: "static_pages#home"
      resources :links
      resources :reports
      get 'report/:id', to: 'reports#new', as: :report_link

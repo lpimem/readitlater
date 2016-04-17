@@ -34,14 +34,13 @@
 
 			<% if i==0 %> 
 				<!-- <input type="button" id="rateup" class="button mt-10" value="Rate Up" onclick= ""> -->
-				<%= form_for(@rating) do |f| %>
-					<div style="display:hidden">
+				<%= form_for(Rating.new) do |f| %>
+					<div style="display:none">
 						<input type="number" value="1" name="rating[value]" id="rating_value" />
 						<input type="number" value="<%= link.id %>" name="rating[link_id]" id="rating_link_id" />
 					</div>
-					 	<input type="submit" name="commit" value="Up" />
+					 	<input style="font-size: 16px" type="submit" name="commit" value="Up" />
 				<% end %>
-  				<input type="button" id="ratedown" class="button mt-10" value="Rate Down" onclick= "location.reload()">
   			<% end %>
 
 
@@ -51,4 +50,10 @@
 		<% end %>
 	</div>
   <% end %>
+  <!-- hard code stypes for links rating up/down buttons -->
+  <style type="text/css">
+  	form {
+  		display: inline;
+  	}
+  </style>
 <% end %>

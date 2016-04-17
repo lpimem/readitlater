@@ -25,6 +25,8 @@ class RatingsController < ApplicationController
   # POST /ratings.json
   def create
     @rating = Rating.new(rating_params)
+    @rating.link_id = rating_params[:link_id]
+    @rating.account_id = current_account.id
 
     respond_to do |format|
       if @rating.save

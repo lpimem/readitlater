@@ -42,6 +42,7 @@ account2 = Account.create!(email: "test2@memphis.edu", password: "12345678", sig
 account3 = Account.create!(email: "test3@memphis.edu", password: "12345678", sign_in_count: 10, level: 0)
 account4 = Account.create!(email: "test4@memphis.edu", password: "12345678", sign_in_count: 10, level: 0)
 account5 = Account.create!(email: "admin@memphis.edu", password: "12345678", sign_in_count: 10, level: 1)
+account6 = Account.create!(email: "lwang3@memphis.edu", password: "22222222", sign_in_count: 0, level: 1)
 
 
 # link-rate seed data (work)

@@ -24,6 +24,6 @@ class Link < ActiveRecord::Base
 
 	has_many :reports
 	has_many :ratings
-	belongs_to :user, class_name: "account", foreign_key: "user_id"
+	belongs_to :user, class_name: "account", foreign_key: "account_id"
 
 end

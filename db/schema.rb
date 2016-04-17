@@ -59,11 +59,11 @@ ActiveRecord::Schema.define(version: 20160416065136) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "link_id"
-    t.integer  "user_id"
+    t.integer  "account_id"
   end
 
+  add_index "ratings", ["account_id"], name: "index_ratings_on_account_id"
   add_index "ratings", ["link_id"], name: "index_ratings_on_link_id"
-  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id"
 
   create_table "reports", force: :cascade do |t|
     t.text     "reason"

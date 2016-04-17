@@ -12,13 +12,15 @@
 
 		<% sum = 0 %>
 		<% link.ratings.each do |rating| %>
-			<% sum = sum + rating.value %>
+			<% sum = sum + rating.value; %>
 		<% end %>
 		<%= sum %>
 
 		<% if account_signed_in? %>
-  		<input type="button" class="button mt-10" value="Rate Up">
-  		<input type="button" class="button mt-10" value="Rate Down">
+			
+				<input type="button" class="button mt-10" value="Rate Up" >
+  				<input type="button" class="button mt-10" value="Rate Down" >
+  			  
 		<input type="button" class="button mt-10" value="COMMENT">
 		<input type="button" class="button mt-10" value="PUBLISHER">
 		<input type="button" class="button mt-10" value="REPORT LINK" onclick="window.location='/report/<%= link.id %>'">

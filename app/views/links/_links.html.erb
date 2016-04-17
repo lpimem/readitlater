@@ -5,8 +5,8 @@
 		<p class="mt-10">Date Published: <%= link.created_at.to_formatted_s(:long_ordinal) %></p>
 
 		<% sum = 0 %>
-		<% @links.ratings.each do |link| %>
-			<% sum = sum + links.ratings.value %>
+		<% link.ratings.each do |rating| %>
+			<% sum = sum + rating.value %>
 		<% end %>
 		<%= sum %>
 		<% if account_signed_in? %>

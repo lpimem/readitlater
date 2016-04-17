@@ -23,7 +23,7 @@ class Link < ActiveRecord::Base
 	validates :description, presence: true, length: { maximum: 100}
 
 	has_many :reports
-	has_many :ratings, class_name: "ratings"
+	has_many :ratings
 	belongs_to :user, class_name: "account", foreign_key: "user_id"
 
 end

@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  
+
   resources :profiles
   devise_for :accounts
   resources :followships
   resources :ratings
   resources :accounts
+  resources :links
 
 
   get 'search', to: 'links#search'
@@ -14,17 +15,18 @@ Rails.application.routes.draw do
 
   devise_scope :account do
     authenticated :account do
-     root to: "static_pages#home", as: :authenticated_root
+     root to: "links#index", as: :authenticated_root
      resources :links
      resources :reports
      get 'report/:id', to: 'reports#new', as: :report_link
     end
 
     unauthenticated do
-     root to: "static_pages#home", as: :unauthenticated_root
+     root to: "links#index", as: :unauthenticated_root
      #get 'profile', to: 'static_pages#profile',as: 'profile'
     end
 
+  get 'rateup', to: 'ratings#rateup'
   end
 
   # should be at bottom-- for default page

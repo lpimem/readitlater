@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160416065136) do
+ActiveRecord::Schema.define(version: 20160417174114) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -32,12 +32,8 @@ ActiveRecord::Schema.define(version: 20160416065136) do
   add_index "accounts", ["email"], name: "index_accounts_on_email", unique: true
   add_index "accounts", ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
 
-  create_table "followships", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "following"
-    t.string   "follower"
-  end
+# Could not dump table "followships" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "links", force: :cascade do |t|
     t.string   "url"
@@ -46,18 +42,28 @@ ActiveRecord::Schema.define(version: 20160416065136) do
     t.integer  "level"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "account_id"
+  end
+
+  add_index "links", ["account_id"], name: "index_links_on_account_id"
+
+  create_table "profiles", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "ratings", force: :cascade do |t|
-    t.integer  "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "value",      default: 0, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.integer  "link_id"
-    t.integer  "user_id"
+    t.integer  "account_id"
   end
 
+  add_index "ratings", ["account_id"], name: "index_ratings_on_account_id"
   add_index "ratings", ["link_id"], name: "index_ratings_on_link_id"
-  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id"
 
   create_table "reports", force: :cascade do |t|
     t.text     "reason"

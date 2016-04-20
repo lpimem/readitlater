@@ -11,6 +11,6 @@
 
 class Report < ActiveRecord::Base
     #validations	
-    validates :reason, presence: true 
+    validates :reason, presence: true , format: { with: /\A[\w.]*\z/ }
     belongs_to :link 
 end

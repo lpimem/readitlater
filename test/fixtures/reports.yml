@@ -16,3 +16,8 @@ one:
 
 two:
   reason: MyText
+
+test1:
+  reason: this is a bad link.
+
+   

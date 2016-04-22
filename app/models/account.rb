@@ -40,6 +40,10 @@ class Account < ActiveRecord::Base
 
   has_many :ratings
 
+  # one to many association between account and comments
+
+  has_many :comments
+
 
 #self-joins
 # has_many :followers, class_name: "account", foreign_key: "followship"

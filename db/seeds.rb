@@ -75,7 +75,7 @@ link3.ratings << rate6
 account_lp_2.followers = [account_lp_3]
 account_lp_2.save!
 
-# Account-link seed data (work)
+# Account-link seed data
 
 account1.links << link1
 account2.links << link2
@@ -94,3 +94,15 @@ account1.save!
 account2.save!
 account3.save!
 account4.save!
+
+# comments seed data
+
+comment1 = Comment.create!(comment: "This is a helpful link! Thanks a lot.")
+comment2 = Comment.create!(comment: "How is the textbook? Is it easy to understand?")
+
+account6.comments << comment1 << comment2
+
+link1.comments << comment1
+link2.comments << comment2
+
+

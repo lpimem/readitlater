@@ -1,17 +1,18 @@
 # == Schema Information
 #
-# Table name: profiles
+# Table name: comments
 #
 #  id         :integer          not null, primary key
-#  first_name :string
-#  last_name  :string
+#  comment    :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  link_id    :integer
+#  account_id :integer
 #
 
 require 'test_helper'
 
-class ProfileTest < ActiveSupport::TestCase
+class CommentTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

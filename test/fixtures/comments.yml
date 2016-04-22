@@ -1,21 +1,19 @@
 # == Schema Information
 #
-# Table name: ratings
+# Table name: comments
 #
 #  id         :integer          not null, primary key
-#  value      :integer          default("0"), not null
+#  comment    :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  link_id    :integer
 #  account_id :integer
 #
 
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+one:
+  comment: MyText
 
-require 'test_helper'
-
-class RatingTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
-end
+two:
+  comment: MyText

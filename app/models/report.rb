@@ -9,6 +9,7 @@
 #  link_id    :integer
 #
 
+
 class Report < ActiveRecord::Base
     #validations	
     validates :reason, presence: true , format: { with: /\A[\w.]*\z/ }

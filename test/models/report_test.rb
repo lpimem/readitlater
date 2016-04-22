@@ -9,6 +9,7 @@
 #  link_id    :integer
 #
 
+
 require 'test_helper'
 
 class ReportTest < ActiveSupport::TestCase

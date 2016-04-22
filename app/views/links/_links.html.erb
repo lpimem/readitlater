@@ -20,6 +20,7 @@
 
 		<% if account_signed_in? %>
 
+
 		<!-- rate only once function -->
 
 			<% i = 0 %>
@@ -43,9 +44,9 @@
   			<% end %>
 
 
-  			<input type="button" class="button mt-10" value="COMMENT">
-			<input type="button" class="button mt-10" value="PUBLISHER">
-			<input type="button" class="button mt-10" value="REPORT LINK" onclick="window.location='/report/<%= link.id %>'">
+  		<input type="button" class="button mt-10" value="COMMENT">
+		<input type="button" class="button mt-10" value="PUBLISHER" onclick="window.location='/profile/'">
+		<input type="button" class="button mt-10" value="REPORT LINK" onclick="window.location='/report/<%= link.id %>'">
 		<% end %>
 	</div>
   <% end %>

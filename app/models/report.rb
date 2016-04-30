@@ -11,6 +11,7 @@
 
 class Report < ActiveRecord::Base
     #validations	
-    validates :reason, presence: true , format: { with: /\A[\w.]*\z/ }
-    belongs_to :link 
+    validates :reason, presence: true #format: { with: /\A[a-zA-Z]+\z/ }
+    belongs_to :link
+    belongs_to :account
 end

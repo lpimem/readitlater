@@ -43,6 +43,9 @@ class Account < ActiveRecord::Base
   has_many :ratings
 
 
+  has_many :reports
+
+
 #self-joins
 # has_many :followers, class_name: "account", foreign_key: "followship"
 # belongs_to :following, class_name: "account", foreign_key: "follower"

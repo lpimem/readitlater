@@ -26,4 +26,5 @@ class Link < ActiveRecord::Base
 	has_many :ratings
 	belongs_to :user, class_name: "account", foreign_key: "account_id"
 
+	has_many :comments
 end

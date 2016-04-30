@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160430002208) do
+ActiveRecord::Schema.define(version: 20160422162535) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -31,6 +31,17 @@ ActiveRecord::Schema.define(version: 20160430002208) do
 
   add_index "accounts", ["email"], name: "index_accounts_on_email", unique: true
   add_index "accounts", ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "link_id"
+    t.integer  "account_id"
+  end
+
+  add_index "comments", ["account_id"], name: "index_comments_on_account_id"
+  add_index "comments", ["link_id"], name: "index_comments_on_link_id"
 
 # Could not dump table "followships" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass
@@ -70,10 +81,9 @@ ActiveRecord::Schema.define(version: 20160430002208) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "link_id"
-    t.integer  "account_id"
   end
 
-  add_index "reports", ["account_id"], name: "index_reports_on_account_id"
   add_index "reports", ["link_id"], name: "index_reports_on_link_id"
 
 end
+

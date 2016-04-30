@@ -10,19 +10,50 @@
   		<p class="mt-10">Date Published: <%= link.created_at.to_formatted_s(:long_ordinal) %></p>
 
 
+  		<!-- Sum rating -->
+
 		<% sum = 0 %>
 		<% link.ratings.each do |rating| %>
-			<% sum = sum + rating.value %>
+			<% sum = sum + rating.value; %>
 		<% end %>
 		<%= sum %>
 
 		<% if account_signed_in? %>
-  		<input type="button" class="button mt-10" value="Rate Up">
-  		<input type="button" class="button mt-10" value="Rate Down">
-		<input type="button" class="button mt-10" value="COMMENT">
-		<input type="button" class="button mt-10" value="PUBLISHER">
+
+
+		<!-- rate only once function -->
+
+			<% i = 0 %>
+			<% current_account.ratings.each do |rate| %>
+			  <%if rate.link_id == link.id  %>
+			  	<% i = i+1%>
+			  	<% next %>
+			  <% end %>
+			<% end %>  
+			
+			<!-- rate 1 -->
+
+			<% if i==0 %> 
+				<%= form_for(Rating.new) do |f| %>
+					<div style="display:none">
+						<input type="number" value="1" name="rating[value]" id="rating_value" />
+						<input type="number" value="<%= link.id %>" name="rating[link_id]" id="rating_link_id" />
+					</div>
+					 	<input class="button mt-10" type="image" id = "RateUpImage" name="RateUp" src = "/assets/Up.png" style = "=height:20px; width:15px"/>
+				<% end %>
+  			<% end %>
+
+
+  		<input type="button" class="button mt-10" value="COMMENT">
+		<input type="button" class="button mt-10" value="PUBLISHER" onclick="window.location='/profile/'">
 		<input type="button" class="button mt-10" value="REPORT LINK" onclick="window.location='/report/<%= link.id %>'">
 		<% end %>
 	</div>
   <% end %>
+  <!-- hard code stypes for links rating up/down buttons -->
+  <style type="text/css">
+  	form {
+  		display: inline;
+  	}
+  </style>
 <% end %>

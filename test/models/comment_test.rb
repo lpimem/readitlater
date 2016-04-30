@@ -1,17 +1,19 @@
 # == Schema Information
 #
-# Table name: reports
+# Table name: comments
 #
 #  id         :integer          not null, primary key
-#  reason     :text
+#  comment    :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  link_id    :integer
+#  account_id :integer
 #
 
+require 'test_helper'
 
-class Report < ActiveRecord::Base
-    #validations	
-    validates :reason, presence: true , format: { with: /\A[\w.]*\z/ }
-    belongs_to :link 
+class CommentTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
 end

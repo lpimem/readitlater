@@ -106,3 +106,15 @@ link1.comments << comment1
 link2.comments << comment2
 
 
+# create profile seeds
+profile_account1 = Profile.create!(first_name: "test1_first", last_name: "test1_last")
+profile_account2 =  Profile.create!(first_name: "test2_first", last_name: "test2_last")
+profile_account3 = Profile.create!(first_name: "test3_first", last_name: "test3_last")
+
+account1.profile = profile_account1
+account2.profile = profile_account2
+account3.profile = profile_account3
+
+account1.save!
+account2.save!
+account3.save!

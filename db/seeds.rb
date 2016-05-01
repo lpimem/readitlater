@@ -81,6 +81,7 @@ account1.links << link1
 account2.links << link2
 account3.links << link3
 account4.links << link4
+account5.links << link5
 account_lp_2.links = [link6, link7, link8]
 account_lp_2.save!
 
@@ -94,6 +95,7 @@ account1.save!
 account2.save!
 account3.save!
 account4.save!
+account5.save!
 
 # comments seed data
 

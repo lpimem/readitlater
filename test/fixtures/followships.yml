@@ -2,10 +2,11 @@
 #
 # Table name: followships
 #
-#  id         :integer          not null, primary key
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  account_id :integer
+#  id           :integer          not null, primary key
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  following_id :reference
+#  follower_id  :reference
 #
 
 

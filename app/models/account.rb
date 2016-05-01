@@ -15,10 +15,8 @@
 #  last_sign_in_ip        :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  followship_id          :integer
 #  level                  :integer
 #
-
 
 class Account < ActiveRecord::Base
   # Include default devise modules. Others available are:
@@ -41,6 +39,10 @@ class Account < ActiveRecord::Base
   # One to many association between account and rating
 
   has_many :ratings
+
+  # one to many association between account and comments
+
+  has_many :comments
 
 
 #self-joins

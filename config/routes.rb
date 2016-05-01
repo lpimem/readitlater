@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :comments
   resources :profiles
   devise_for :accounts
   resources :followships

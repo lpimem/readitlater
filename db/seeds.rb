@@ -46,12 +46,12 @@ rate5 = Rating.create!(value: 1)
 rate6 = Rating.create!(value: -1)
 
 # account seed data
-account1 = Account.create!(email: "test1@memphis.edu", password: "12345678", sign_in_count: 10, level: 0)
+account1 = Account.create!(email: "test1@memphis.edu", password: "12345678", sign_in_count: 10, level: 1)
 account2 = Account.create!(email: "test2@memphis.edu", password: "12345678", sign_in_count: 10, level: 0)
 account3 = Account.create!(email: "test3@memphis.edu", password: "12345678", sign_in_count: 10, level: 0)
 account4 = Account.create!(email: "test4@memphis.edu", password: "12345678", sign_in_count: 10, level: 0)
-account5 = Account.create!(email: "admin@memphis.edu", password: "12345678", sign_in_count: 10, level: 1)
-account6 = Account.create!(email: "lwang3@memphis.edu", password: "22222222", sign_in_count: 0, level: 1)
+account5 = Account.create!(email: "admin@memphis.edu", password: "12345678", sign_in_count: 10, level: 0)
+account6 = Account.create!(email: "lwang3@memphis.edu", password: "22222222", sign_in_count: 0, level: 0)
 account_lp_1 = Account.create!(email: "test_user_lp_1@memphis.edu", password: "test_user_lp_12345", sign_in_count: 10, level: 0)
 account_lp_2 = Account.create!(email: "test_user_lp_2@memphis.edu", password: "test_user_lp_12345", sign_in_count: 10, level: 0)
 account_lp_3 = Account.create!(email: "test_user_lp_3@memphis.edu", password: "test_user_lp_12345", sign_in_count: 10, level: 0)
@@ -61,7 +61,7 @@ account_lp_3 = Account.create!(email: "test_user_lp_3@memphis.edu", password: "t
 followship1 = Followship.create!(follower_id: 2, following_id: 4)
 followship2 = Followship.create!(follower_id: 3, following_id: 1)
 followship3 = Followship.create!(follower_id: 4, following_id: 2)
-foolowship4 = Followship.create!(follower_id: 1, following_id: 3)
+followship4 = Followship.create!(follower_id: 1, following_id: 3)
 
 # link-rate seed data
 
@@ -70,12 +70,12 @@ link2.ratings << rate4 << rate5
 link3.ratings << rate6
 
 # followship seed data
-
+5
 # account1.followships << account2 << account3
 account_lp_2.followers = [account_lp_3]
 account_lp_2.save!
 
-# Account-link seed data
+# Account-link seed data (work)
 
 account1.links << link1
 account2.links << link2
@@ -90,19 +90,31 @@ account1.ratings << rate1 << rate4 << rate6
 account2.ratings << rate2 << rate5
 account3.ratings << rate3
 
+
+
+# report seed data
+report1=Report.create!(reason: 'This is a spam link')
+report2=Report.create!(reason: 'This is a bad link')
+report3=Report.create!(reason: 'This is a spam link')
+report4=Report.create!(reason: 'This link is dumb')
+report5=Report.create!(reason: 'This link is bad link')
+report6=Report.create!(reason: 'Refer this link if you were a beginner')
+report7=Report.create!(reason: 'This link is dumb')
+report8=Report.create!(reason: 'This link is a good link for beginners')
+
+link1.reports<<report1
+link2.reports<<report2
+link3.reports<<report3
+link4.reports<<report4
+
+account1.reports<<report1
+account2.reports<<report2
+account3.reports<<report3
+
 account1.save!
 account2.save!
 account3.save!
 account4.save!
 
-# comments seed data
-
-comment1 = Comment.create!(comment: "This is a helpful link! Thanks a lot.")
-comment2 = Comment.create!(comment: "How is the textbook? Is it easy to understand?")
-
-account6.comments << comment1 << comment2
-
-link1.comments << comment1
-link2.comments << comment2
 
 

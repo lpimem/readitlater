@@ -6,7 +6,7 @@
   	      <%= link_to('Logout', destroy_account_session_path, :method => :delete) %>
       </div>
       <% if current_account.has_attribute?("level") && current_account.level == 1 %>
-    		  <input type="button" class="button" value="VIEW REPORT" />
+    		  <input type="button" class="button" value="VIEW REPORT" onclick="window.location.href='<%= reports_path %>'" />
     	<% end %>
     	<input type="button" class="button" value="New Link" onclick="window.location.href='<%= new_link_path %>'" />
   <% else %>

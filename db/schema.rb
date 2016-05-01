@@ -86,3 +86,4 @@ ActiveRecord::Schema.define(version: 20160422162535) do
   add_index "reports", ["link_id"], name: "index_reports_on_link_id"
 
 end
+

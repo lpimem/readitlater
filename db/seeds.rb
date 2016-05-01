@@ -52,9 +52,9 @@ account3 = Account.create!(email: "test3@memphis.edu", password: "12345678", sig
 account4 = Account.create!(email: "test4@memphis.edu", password: "12345678", sign_in_count: 10, level: 0)
 account5 = Account.create!(email: "admin@memphis.edu", password: "12345678", sign_in_count: 10, level: 0)
 account6 = Account.create!(email: "lwang3@memphis.edu", password: "22222222", sign_in_count: 0, level: 0)
-account_lp_1 = Account.create!(email: "test_user_lp_1@memphis.edu", password: "test_user_lp_12345", sign_in_count: 10, level: 0)
-account_lp_2 = Account.create!(email: "test_user_lp_2@memphis.edu", password: "test_user_lp_12345", sign_in_count: 10, level: 0)
-account_lp_3 = Account.create!(email: "test_user_lp_3@memphis.edu", password: "test_user_lp_12345", sign_in_count: 10, level: 0)
+account_bob = Account.create!(email: "bob@memphis.edu", password: "test_user_12345", sign_in_count: 10, level: 0)
+account_alice = Account.create!(email: "alice@memphis.edu", password: "test_user_12345", sign_in_count: 10, level: 0)
+account_trudy = Account.create!(email: "trudy@memphis.edu", password: "test_user_12345", sign_in_count: 10, level: 0)
 
 # Followship seed data
 

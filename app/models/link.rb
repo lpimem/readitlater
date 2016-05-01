@@ -27,4 +27,6 @@ class Link < ActiveRecord::Base
 	belongs_to :user, class_name: "account", foreign_key: "account_id"
 
 	has_many :comments
+	has_many :link_tag_rels
+	has_many :tags, through: :link_tag_rels
 end

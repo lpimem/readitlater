@@ -118,3 +118,10 @@ account4.save!
 
 
 
+# Seed data for Tags
+tag_rails = Tag.create(label: "Rails")
+tag_tutorial = Tag.create(label: "Tutorial")
+link1.tags = [tag_rails]
+link2.tags = [tag_rails, tag_tutorial]
+link1.save!
+link2.save!

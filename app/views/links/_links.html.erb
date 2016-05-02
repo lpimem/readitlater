@@ -41,7 +41,7 @@
     				<% end %>
     			<% end %>
           <input type="button" class="button mt-10" value="COMMENT">
-          <input type="button" class="button mt-10" value="PUBLISHER" onclick="window.location='/profile/'">
+          <input type="button" class="button mt-10" value="PUBLISHER" onclick="window.location='/profiles/<%= link.account_id %>'">
           <input type="button" class="button mt-10" value="REPORT LINK" onclick="window.location='/report/<%= link.id %>'">
   		  <% end %> <!-- end of if signed_in -->
 	   </div>

@@ -21,15 +21,7 @@ class LinksController < ApplicationController
   # GET /links
   # GET /links.json
   def index
-     if params.key?(:p)
-       @page = params[:p].to_i
-       logger.info(">>>>" + @page.to_s)
-       if @page < 0
-         @page = 1
-       end
-     else
-       @page = 1
-     end
+     set_page
      if account_signed_in?
        pub_links = get_public_links
        pri_links = get_only_for_follower_links
@@ -38,15 +30,7 @@ class LinksController < ApplicationController
      else
        @links = get_public_links
      end
-     @pages = (@links.count / (page_limit * 1.0)).ceil
-     logger.info(">>>>>> @links.count : " + @links.count.to_s)
-     logger.info(">>>>>> pages : " + @pages.to_s)
-     if @page > @pages
-       @page = @pages
-     end
-     if @links.any?
-       @links = @links[(@page-1)*page_limit, page_limit]
-     end
+     update_page_states
   end
 
   # GET /links/1
@@ -104,6 +88,7 @@ class LinksController < ApplicationController
   end
 
   def search
+    set_page
     kwd = params[:keyword]
     by_tag = Link.joins(
       'LEFT JOIN link_tag_rels as a on a.link_id = links.id
@@ -113,11 +98,14 @@ class LinksController < ApplicationController
       "%" + kwd + "%",
       "%" + kwd + "%" ).order("links.created_at")
     @links = (by_tag + by_title_desc).uniq{|x| x.id}
+    update_page_states
   end
 
   def filter_following
     if current_account
+      set_page
       @links = get_followed_links
+      update_page_states
     else
       redirect_to unauthenticated_root_path, notice: 'You are not logged in.'
     end
@@ -173,6 +161,27 @@ class LinksController < ApplicationController
         end
       end
       tags
+    end
+
+    def set_page
+      if params.key?(:p)
+        @page = params[:p].to_i
+        if @page < 0
+          @page = 1
+        end
+      else
+        @page = 1
+      end
+    end
+
+    def update_page_states
+      @pages = (@links.count / (page_limit * 1.0)).ceil
+      if @page > @pages
+        @page = @pages
+      end
+      if @links.any?
+        @links = @links[(@page-1)*page_limit, page_limit]
+      end
     end
 
     # def set_page_limit

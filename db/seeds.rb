@@ -92,16 +92,12 @@ account3.ratings << rate3
 
 
 
+
 # report seed data
 report1=Report.create!(reason: 'This is a spam link')
 report2=Report.create!(reason: 'This is a bad link')
 report3=Report.create!(reason: 'This is a spam link')
 report4=Report.create!(reason: 'This link is dumb')
-report5=Report.create!(reason: 'This link is bad link')
-report6=Report.create!(reason: 'Refer this link if you were a beginner')
-report7=Report.create!(reason: 'This link is dumb')
-report8=Report.create!(reason: 'This link is a good link for beginners')
-
 link1.reports<<report1
 link2.reports<<report2
 link3.reports<<report3
@@ -115,7 +111,6 @@ account1.save!
 account2.save!
 account3.save!
 account4.save!
-
 
 
 # Seed data for Tags

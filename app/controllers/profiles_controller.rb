@@ -10,6 +10,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
+    @current_account_id = current_account.id
   end
 
   # GET /profiles/new

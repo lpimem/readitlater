@@ -12,9 +12,6 @@
 #  account_id  :integer
 #
 
-
-
-
 class Link < ActiveRecord::Base
 	attr_accessor :tags_text
 

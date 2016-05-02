@@ -16,5 +16,7 @@
 
 /* Normalize CSS */
 
-@import "bootstrap-sprockets"
-@import "bootstrap"
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body { padding-top: 70px; }

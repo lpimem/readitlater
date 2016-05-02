@@ -23,6 +23,7 @@ class LinksController < ApplicationController
   # GET /links/new
   def new
     @link = Link.new
+    logger.info(">>>>>>>>>> NEW")
   end
 
   # GET /links/1/edit
@@ -32,8 +33,15 @@ class LinksController < ApplicationController
   # POST /links
   # POST /links.json
   def create
+    logger.info(">>>>>>>>>> CREATE")
+    logger.info(link_params)
     @link = Link.new(link_params)
     @link.account_id = current_account.id
+    if link_params.key?(:tags_text)
+      logger.info(">>>>>>>>>> TAGS_TEXT")
+      tag_labels = link_params[:tags_text].split(/[,;.\s\r\n]+/)
+      @link.tags = get_or_create_tags(tag_labels)
+    end
     if @link.save
       redirect_to authenticated_root_path, notice: 'Link was successfully created.'
     else
@@ -111,6 +119,23 @@ class LinksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def link_params
-      params.require(:link).permit(:url, :title, :description, :level)
+      params.require(:link).permit(:url, :title, :description, :level, :tags_text)
+    end
+
+    def query_tags(tag_labels)
+      Tag.where(label: tag_labels)
+    end
+
+    def get_or_create_tags(tag_labels)
+      tags = query_tags(tag_labels)
+      to_create = tag_labels - tags.map { |tag| tag.label }
+      if to_create.any?
+        Tag.transaction do
+          to_create.each do |label|
+            tags << Tag.create!(label: label)
+          end
+        end
+      end
+      tags
     end
 end

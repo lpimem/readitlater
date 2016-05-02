@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160430002208) do
+ActiveRecord::Schema.define(version: 20160501202221) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -43,8 +43,22 @@ ActiveRecord::Schema.define(version: 20160430002208) do
   add_index "comments", ["account_id"], name: "index_comments_on_account_id"
   add_index "comments", ["link_id"], name: "index_comments_on_link_id"
 
-# Could not dump table "followships" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "followships", force: :cascade do |t|
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "following_id"
+    t.integer  "follower_id"
+  end
+
+  create_table "link_tag_rels", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "link_id"
+    t.integer  "tag_id"
+  end
+
+  add_index "link_tag_rels", ["link_id"], name: "index_link_tag_rels_on_link_id"
+  add_index "link_tag_rels", ["tag_id"], name: "index_link_tag_rels_on_tag_id"
 
   create_table "links", force: :cascade do |t|
     t.string   "url"
@@ -89,5 +103,11 @@ ActiveRecord::Schema.define(version: 20160430002208) do
 
   add_index "reports", ["account_id"], name: "index_reports_on_account_id"
   add_index "reports", ["link_id"], name: "index_reports_on_link_id"
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "label"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end

@@ -47,10 +47,12 @@
 	   </div>
   <% end %> <!-- end of @links.each do |link|  -->
   <!-- Pages -->
-  <% for i in 1..(@pages) do %>
-    <div class='page_count_<% if i == @page %>active<% else %>normal<% end %>'>
-      <%= link_to i.to_s, "?p=" + i.to_s %>
-    </div>
+  <% if @pages > 1 %>
+    <% for i in 1..(@pages) do %>
+      <div class='page_count_<% if i == @page %>active<% else %>normal<% end %>'>
+        <%= link_to i.to_s, "?p=" + i.to_s %>
+      </div>
+    <% end %>
   <% end %>
   <!-- hard code stypes for links rating up/down buttons -->
   <style type="text/css">

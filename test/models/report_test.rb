@@ -13,24 +13,24 @@
 require 'test_helper'
 
 class ReportTest < ActiveSupport::TestCase
-     
+  setup do
+    @test1 = reports(:test1)
+  end
+
      #reason presence
      test "Report with a reason should be valid" do
-	     test1 =reports(:test1)
-	     assert test1.valid?
+	     assert @test1.valid?
      end
 
      test "Report with empty reason should be invalid" do
-	     test1 =reports(:test1)
-	     test1.reason= ''
-	     assert test1.invalid?
+	     @test1.reason= ''
+	     assert @test1.invalid?
      end
 
     #reason format testing
     test "Link should be invalid if has invalid url" do
-	    test1 = reports(:test1)
-	    test1.reason = '#*()+++=='
-	    assert test1.invalid?
+	    @test1.reason = '#*()+++=='
+	    assert @test1.invalid?
 	end
 
 

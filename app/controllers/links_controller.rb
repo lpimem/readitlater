@@ -70,9 +70,15 @@ class LinksController < ApplicationController
   end
 
   def search
-    @links = Link.where("title like ? or description like ?",
-      "%" + params[:keyword] + "%",
-      "%" + params[:keyword] + "%" ).order("links.created_at")
+    kwd = params[:keyword]
+    by_tag = Link.joins(
+      'LEFT JOIN link_tag_rels as a on a.link_id = links.id
+      LEFT JOIN tags as b on b.id = a.tag_id')
+      .where("b.label like ?", '%' + kwd+'%').order("links.created_at")
+    by_title_desc = Link.where("title like ? or description like ?",
+      "%" + kwd + "%",
+      "%" + kwd + "%" ).order("links.created_at")
+    @links = (by_tag + by_title_desc).uniq{|x| x.id}
   end
 
   def filter_following

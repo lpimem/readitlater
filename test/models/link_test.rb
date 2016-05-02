@@ -16,6 +16,7 @@ require 'test_helper'
 
 class LinkTest < ActiveSupport::TestCase
   setup do
+    # self.use_instantiated_fixtures = true
     @link = links(:test1)
   end
 

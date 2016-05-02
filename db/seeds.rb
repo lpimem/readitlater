@@ -52,9 +52,9 @@ account3 = Account.create!(email: "test3@memphis.edu", password: "12345678", sig
 account4 = Account.create!(email: "test4@memphis.edu", password: "12345678", sign_in_count: 10, level: 0)
 account5 = Account.create!(email: "admin@memphis.edu", password: "12345678", sign_in_count: 10, level: 0)
 account6 = Account.create!(email: "lwang3@memphis.edu", password: "22222222", sign_in_count: 0, level: 0)
-account_lp_1 = Account.create!(email: "test_user_lp_1@memphis.edu", password: "test_user_lp_12345", sign_in_count: 10, level: 0)
-account_lp_2 = Account.create!(email: "test_user_lp_2@memphis.edu", password: "test_user_lp_12345", sign_in_count: 10, level: 0)
-account_lp_3 = Account.create!(email: "test_user_lp_3@memphis.edu", password: "test_user_lp_12345", sign_in_count: 10, level: 0)
+account_bob = Account.create!(email: "bob@memphis.edu", password: "test_user_12345", sign_in_count: 10, level: 0)
+account_alice = Account.create!(email: "alice@memphis.edu", password: "test_user_12345", sign_in_count: 10, level: 0)
+account_trudy = Account.create!(email: "trudy@memphis.edu", password: "test_user_12345", sign_in_count: 10, level: 0)
 
 # Followship seed data
 
@@ -72,8 +72,8 @@ link3.ratings << rate6
 # followship seed data
 5
 # account1.followships << account2 << account3
-account_lp_2.followers = [account_lp_3]
-account_lp_2.save!
+account_alice.followers = [account_trudy]
+account_alice.save!
 
 # Account-link seed data (work)
 
@@ -81,14 +81,15 @@ account1.links << link1
 account2.links << link2
 account3.links << link3
 account4.links << link4
-account_lp_2.links = [link6, link7, link8]
-account_lp_2.save!
+account_alice.links = [link6, link7, link8]
+account_alice.save!
 
 # account-rate seed data
 
 account1.ratings << rate1 << rate4 << rate6
 account2.ratings << rate2 << rate5
 account3.ratings << rate3
+
 
 
 
@@ -112,4 +113,10 @@ account3.save!
 account4.save!
 
 
-
+# Seed data for Tags
+tag_rails = Tag.create(label: "Rails")
+tag_tutorial = Tag.create(label: "Tutorial")
+link1.tags = [tag_rails]
+link2.tags = [tag_rails, tag_tutorial]
+link1.save!
+link2.save!

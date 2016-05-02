@@ -20,3 +20,19 @@
   margin-right: 5px;
 
 }
+
+.page_count_normal, .page_count_active{
+  display: inline-block;
+  border : 1px solid black;
+  font-size: 0.5em;
+  width: auto;
+  min-width: 16px;
+  margin: 0 2px 0 0;
+  text-align: center;
+  background-color: lightgrey;
+}
+
+.page_count_active{
+  background-color: yellow;
+  font-weight: bold;
+}

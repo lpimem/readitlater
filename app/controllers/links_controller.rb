@@ -2,9 +2,20 @@ class LinksController < ApplicationController
   before_action :authenticate_account!, only: [:filter_following]
   before_action :set_link, only: [:show, :edit, :update, :destroy]
 
+
+
   # GET /links
   # GET /links.json
   def index
+     if params.key?(:p)
+       @page = params[:p].to_i
+       logger.info(">>>>" + @page.to_s)
+       if @page < 0
+         @page = 1
+       end
+     else
+       @page = 1
+     end
      if account_signed_in?
        pub_links = get_public_links
        pri_links = get_only_for_follower_links
@@ -13,6 +24,13 @@ class LinksController < ApplicationController
      else
        @links = get_public_links
      end
+     @pages = (@links.count / (page_limit * 1.0)).ceil
+     logger.info(">>>>>> @links.count : " + @links.count.to_s)
+     logger.info(">>>>>> pages : " + @pages.to_s)
+     if @page > @pages
+       @page = @pages
+     end
+     @links = @links[(@page-1)*page_limit, page_limit]
   end
 
   # GET /links/1
@@ -139,5 +157,14 @@ class LinksController < ApplicationController
         end
       end
       tags
+    end
+
+    # def set_page_limit
+    #   # TODO: update this setting
+    #   page_limit = 2
+    # end
+
+    def page_limit
+      7
     end
 end

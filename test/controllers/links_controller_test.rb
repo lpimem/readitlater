@@ -18,6 +18,7 @@ require 'test_helper'
 class LinksControllerTest < ActionController::TestCase
   setup do
     @link = links(:one)
+    @user = accounts(:one)
   end
 
   test "should get index" do
@@ -32,11 +33,12 @@ class LinksControllerTest < ActionController::TestCase
   end
 
   test "should create link" do
+    sign_in @user
     assert_difference('Link.count') do
       post :create, link: { description: @link.description, level: @link.level, title: @link.title, url: @link.url + "?" + rand(10000).to_s}
     end
-
-    assert_redirected_to link_path(assigns(:link))
+    assert_redirected_to authenticated_root_path
+    sign_out @user
   end
 
   test "should show link" do
@@ -58,7 +60,6 @@ class LinksControllerTest < ActionController::TestCase
     assert_difference('Link.count', -1) do
       delete :destroy, id: @link
     end
-
     assert_redirected_to links_path
   end
 end

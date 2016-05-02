@@ -15,8 +15,8 @@
 require 'test_helper'
 
 class LinkTest < ActiveSupport::TestCase
- 
- #title tests 
+
+ #title tests
    test "Link with a valid Title should be valid" do
      test1 =links(:test1)
      assert test1.valid?
@@ -40,7 +40,7 @@ class LinkTest < ActiveSupport::TestCase
      assert test1.invalid?
   end
 
-  
+
    test "Link should be invalid if has invalid url" do
     test1 = links(:test1)
     test1.url = 'hwy.com'
@@ -52,7 +52,7 @@ class LinkTest < ActiveSupport::TestCase
      test1 =links(:test1)
      assert test1.valid?
   end
-  
+
   test "Link with empty Description should be invalid" do
      test1 =links(:test1)
      test1.description= ''
@@ -71,7 +71,7 @@ class LinkTest < ActiveSupport::TestCase
      test1 =links(:test1)
      assert test1.valid?
   end
-  
+
   test "Link with empty level should be invalid" do
      test1 =links(:test1)
      test1.level= ''

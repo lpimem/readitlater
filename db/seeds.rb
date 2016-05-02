@@ -72,8 +72,8 @@ link3.ratings << rate6
 # followship seed data
 5
 # account1.followships << account2 << account3
-account_lp_2.followers = [account_lp_3]
-account_lp_2.save!
+account_alice.followers = [account_trudy]
+account_alice.save!
 
 # Account-link seed data (work)
 
@@ -81,8 +81,8 @@ account1.links << link1
 account2.links << link2
 account3.links << link3
 account4.links << link4
-account_lp_2.links = [link6, link7, link8]
-account_lp_2.save!
+account_alice.links = [link6, link7, link8]
+account_alice.save!
 
 # account-rate seed data
 

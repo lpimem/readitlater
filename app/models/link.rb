@@ -16,6 +16,7 @@
 
 
 class Link < ActiveRecord::Base
+	attr_accessor :tags_text
 
 	validates :url, presence: true, format: { with: /\Ahttps?:\/\/.+/i }
 	validates :title, presence: true

@@ -9,7 +9,7 @@ class LinksController < ApplicationController
        pub_links = get_public_links
        pri_links = get_only_for_follower_links
        links_by_me = get_links_by_account current_account.id
-       @links = pub_links + pri_links + links_by_me
+       @links = (pub_links + pri_links + links_by_me).uniq{|link| link.id}
      else
        @links = get_public_links
      end
@@ -23,7 +23,6 @@ class LinksController < ApplicationController
   # GET /links/new
   def new
     @link = Link.new
-    logger.info(">>>>>>>>>> NEW")
   end
 
   # GET /links/1/edit
@@ -33,12 +32,9 @@ class LinksController < ApplicationController
   # POST /links
   # POST /links.json
   def create
-    logger.info(">>>>>>>>>> CREATE")
-    logger.info(link_params)
     @link = Link.new(link_params)
     @link.account_id = current_account.id
     if link_params.key?(:tags_text)
-      logger.info(">>>>>>>>>> TAGS_TEXT")
       tag_labels = link_params[:tags_text].split(/[,;.\s\r\n]+/)
       @link.tags = get_or_create_tags(tag_labels)
     end

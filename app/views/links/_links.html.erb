@@ -48,9 +48,14 @@
   <% end %> <!-- end of @links.each do |link|  -->
   <!-- Pages -->
   <% if @pages > 1 %>
+    <% if @full_path.include? "?" %>
+      <% delimiter="&" %>
+    <% else %>
+      <% delimiter="?" %>
+    <% end %>
     <% for i in 1..(@pages) do %>
       <div class='page_count_<% if i == @page %>active<% else %>normal<% end %>'>
-        <%= link_to i.to_s, "?p=" + i.to_s %>
+        <%= link_to i.to_s, @full_path + delimiter + "p=" + i.to_s %>
       </div>
     <% end %>
   <% end %>

@@ -182,6 +182,10 @@ class LinksController < ApplicationController
       if @links.any?
         @links = @links[(@page-1)*page_limit, page_limit]
       end
+      @full_path = request.original_fullpath
+      if @full_path.include?("p")
+        @full_path = @full_path.gsub(/[?&]p=\d+/, "")
+      end
     end
 
     # def set_page_limit

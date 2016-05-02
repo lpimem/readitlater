@@ -12,15 +12,12 @@
 #  account_id  :integer
 #
 
-
-
-
 class Link < ActiveRecord::Base
 	attr_accessor :tags_text
 
 	validates :url, presence: true, format: { with: /\Ahttps?:\/\/.+/i }
 	validates :title, presence: true
-	validates :level, presence: true,numericality: { greater_than_or_equal_to:0 , less_than_or_equal_to:2}
+	validates :level, presence: true,numericality: { greater_than_or_equal_to:1 , less_than_or_equal_to:3}
 	validates :description, presence: true, length: { maximum: 100}
 
 	has_many :reports

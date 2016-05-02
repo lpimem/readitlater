@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: links
+#
+#  id          :integer          not null, primary key
+#  url         :string
+#  title       :string
+#  description :string
+#  level       :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  account_id  :integer
+#
+
 class LinksController < ApplicationController
   before_action :authenticate_account!, only: [:filter_following]
   before_action :set_link, only: [:show, :edit, :update, :destroy]

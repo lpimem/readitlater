@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: followships
+#
+#  id           :integer          not null, primary key
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  following_id :integer
+#  follower_id  :integer
+#
+
 class FollowshipsController < ApplicationController
   before_action :set_followship, only: [:show, :edit, :update, :destroy]
 

@@ -10,12 +10,19 @@
   <%= @profile.last_name %>
 </p>
 <p>
-	<td><br><button type="button">followers</button> <button type="button">follow/unfollow</button><br></td>
+	<td><br><button type="button">followers</button><br></td>
+</p>
+<p>
+	<%if current_account.id != @profile.account_id  %>
+		<td><br><button type="button">follow/unfollow</button><br></td>
+	<% end %>
 </p>
 
  <br>
-<%= link_to 'Edit', edit_profile_path(@profile) %> |
-<%= link_to 'Back', profiles_path %>
+ <%if current_account.id == @profile.account_id  %>
+	<%= link_to 'Edit', edit_profile_path(@profile) %> |
+<% end %>
+<%= link_to 'Back', links_path %>
 
 
 

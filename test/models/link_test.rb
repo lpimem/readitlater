@@ -77,7 +77,7 @@ class LinkTest < ActiveSupport::TestCase
   end
 
   test "Link with level greater than 3 is invalid" do
-     @link.level= 8
+     @link.level= 4
      assert @link.invalid?
   end
 

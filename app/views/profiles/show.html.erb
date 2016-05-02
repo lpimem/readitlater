@@ -1,6 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+	<td><br><br><strong> profile of  <%= @profile.first_name %> </strong><br><br><td>
+</p>
+<p>
   <strong>First name:</strong>
   <%= @profile.first_name %>
 </p>
@@ -10,6 +13,9 @@
   <%= @profile.last_name %>
 </p>
 <p>
+<br><br><img src="/assets/nopic.png" alt="logo" style="width:304px;height:228px;"><br><br>
+</p>
+<p>
 	<td><br><button type="button">followers</button><br></td>
 </p>
 <p>
@@ -17,9 +23,11 @@
 		<td><br><button type="button">follow/unfollow</button><br></td>
 	<% end %>
 </p>
-
- <br>
- <%if current_account.id == @profile.account_id  %>
+<p>
+	<td><br><br><strong>all links shared by  <%= @profile.first_name %> </strong><br><br><td>
+</p>
+<br>
+<%if current_account.id == @profile.account_id  %>
 	<%= link_to 'Edit', edit_profile_path(@profile) %> |
 <% end %>
 <%= link_to 'Back', links_path %>

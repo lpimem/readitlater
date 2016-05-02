@@ -28,7 +28,7 @@ elif [ $CMD = "stop" ]; then
     echo "Not running"
   fi
 elif [ $CMD = "restart" ]; then
-  ./server.sh stop
+  ./server.sh stop && \
   ./server.sh start
 elif [ $CMD = "reset" ]; then
   ./server.sh stop

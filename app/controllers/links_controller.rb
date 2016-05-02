@@ -2,17 +2,35 @@ class LinksController < ApplicationController
   before_action :authenticate_account!, only: [:filter_following]
   before_action :set_link, only: [:show, :edit, :update, :destroy]
 
+
+
   # GET /links
   # GET /links.json
   def index
+     if params.key?(:p)
+       @page = params[:p].to_i
+       logger.info(">>>>" + @page.to_s)
+       if @page < 0
+         @page = 1
+       end
+     else
+       @page = 1
+     end
      if account_signed_in?
        pub_links = get_public_links
        pri_links = get_only_for_follower_links
        links_by_me = get_links_by_account current_account.id
-       @links = pub_links + pri_links + links_by_me
+       @links = (pub_links + pri_links + links_by_me).uniq{|link| link.id}
      else
        @links = get_public_links
      end
+     @pages = (@links.count / (page_limit * 1.0)).ceil
+     logger.info(">>>>>> @links.count : " + @links.count.to_s)
+     logger.info(">>>>>> pages : " + @pages.to_s)
+     if @page > @pages
+       @page = @pages
+     end
+     @links = @links[(@page-1)*page_limit, page_limit]
   end
 
   # GET /links/1
@@ -23,7 +41,6 @@ class LinksController < ApplicationController
   # GET /links/new
   def new
     @link = Link.new
-    logger.info(">>>>>>>>>> NEW")
   end
 
   # GET /links/1/edit
@@ -33,12 +50,9 @@ class LinksController < ApplicationController
   # POST /links
   # POST /links.json
   def create
-    logger.info(">>>>>>>>>> CREATE")
-    logger.info(link_params)
     @link = Link.new(link_params)
     @link.account_id = current_account.id
     if link_params.key?(:tags_text)
-      logger.info(">>>>>>>>>> TAGS_TEXT")
       tag_labels = link_params[:tags_text].split(/[,;.\s\r\n]+/)
       @link.tags = get_or_create_tags(tag_labels)
     end
@@ -74,9 +88,15 @@ class LinksController < ApplicationController
   end
 
   def search
-    @links = Link.where("title like ? or description like ?",
-      "%" + params[:keyword] + "%",
-      "%" + params[:keyword] + "%" ).order("links.created_at")
+    kwd = params[:keyword]
+    by_tag = Link.joins(
+      'LEFT JOIN link_tag_rels as a on a.link_id = links.id
+      LEFT JOIN tags as b on b.id = a.tag_id')
+      .where("b.label like ?", '%' + kwd+'%').order("links.created_at")
+    by_title_desc = Link.where("title like ? or description like ?",
+      "%" + kwd + "%",
+      "%" + kwd + "%" ).order("links.created_at")
+    @links = (by_tag + by_title_desc).uniq{|x| x.id}
   end
 
   def filter_following
@@ -137,5 +157,14 @@ class LinksController < ApplicationController
         end
       end
       tags
+    end
+
+    # def set_page_limit
+    #   # TODO: update this setting
+    #   page_limit = 2
+    # end
+
+    def page_limit
+      7
     end
 end

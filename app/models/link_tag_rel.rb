@@ -10,6 +10,8 @@
 #
 
 class LinkTagRel < ActiveRecord::Base
+  validates :link, presence: true
+  validates :tag, presence: true
   belongs_to :link
   belongs_to :tag
 end

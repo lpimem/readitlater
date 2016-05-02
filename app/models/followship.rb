@@ -10,6 +10,8 @@
 #
 
 class Followship < ActiveRecord::Base
+	validates :followers, presence: true
+	validates :following, presence: true
 	belongs_to :followers, class_name: "Account", foreign_key: "follower_id"
 	belongs_to :following, class_name: "Account", foreign_key: "following_id"
 end

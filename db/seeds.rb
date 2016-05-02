@@ -55,6 +55,7 @@ account6 = Account.create!(email: "lwang3@memphis.edu", password: "22222222", si
 account_bob = Account.create!(email: "bob@memphis.edu", password: "test_user_12345", sign_in_count: 10, level: 0)
 account_alice = Account.create!(email: "alice@memphis.edu", password: "test_user_12345", sign_in_count: 10, level: 0)
 account_trudy = Account.create!(email: "trudy@memphis.edu", password: "test_user_12345", sign_in_count: 10, level: 0)
+account_lpi = Account.create!(email: "lpi@memphis.edu", password: "12345678", sign_in_count: 10, level: 0)
 
 # Followship seed data
 
@@ -70,7 +71,7 @@ link2.ratings << rate4 << rate5
 link3.ratings << rate6
 
 # followship seed data
-5
+
 # account1.followships << account2 << account3
 account_alice.followers = [account_trudy]
 account_alice.save!
@@ -81,6 +82,7 @@ account1.links << link1
 account2.links << link2
 account3.links << link3
 account4.links << link4
+account_lpi.links << link5
 account_alice.links = [link6, link7, link8]
 account_alice.save!
 

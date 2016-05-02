@@ -34,4 +34,9 @@ two: {
   email: ut2@example.com,
   level: 2
   }
+
+alice: {
+  email: alice@example.com,
+  level: 2
+}
 #  column: value

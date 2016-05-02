@@ -44,7 +44,9 @@ class LinksController < ApplicationController
      if @page > @pages
        @page = @pages
      end
-     @links = @links[(@page-1)*page_limit, page_limit]
+     if @links.any?
+       @links = @links[(@page-1)*page_limit, page_limit]
+     end
   end
 
   # GET /links/1

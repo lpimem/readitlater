@@ -90,6 +90,7 @@ class LinksController < ApplicationController
   def search
     set_page
     kwd = params[:keyword]
+    @keyword = kwd
     by_tag = Link.joins(
       'LEFT JOIN link_tag_rels as a on a.link_id = links.id
       LEFT JOIN tags as b on b.id = a.tag_id')

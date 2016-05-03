@@ -1,11 +1,10 @@
-<%= render partial: "links/searchbar" %>
 <% if @links.count == 0 %>
 <p>
   No data!
 </p>
 <% else %>
   <% @links.each do |link| %>
-      <div class="comments-list">
+      <div class="well well-sm">
       	<a href="<%= link.url %>" target="_blank"><h5><%= link.title %></h5></a>
         <div class="tags">
           <% link.tags.each do |tag| %>

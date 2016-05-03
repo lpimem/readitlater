@@ -16,7 +16,7 @@ class Tag < ActiveRecord::Base
     uniqueness: true,
     length: {
       minimum: 1,
-      maximum: 36
+      maximum: 15
     },
     presence: true,
     format: {

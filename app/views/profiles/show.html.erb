@@ -13,7 +13,12 @@
   <%= @profile.last_name %>
 </p>
 <p>
-<br><br><img src="/assets/nopic.png" alt="logo" style="width:304px;height:228px;"><br><br>
+  <% if @profile.avatar.present? %>
+  <br><br><img src="<%= @profile.avatar.url %>"  alt="logo" style="width:304px;height:228px;"><br><br>
+  <% else %>
+
+  <br><br><img src="/assets/nopic.png" alt="logo" style="width:304px;height:228px;"><br><br>
+  <% end %>
 </p>
 <p>
 	<td><br><button type="button">followers</button><br></td>

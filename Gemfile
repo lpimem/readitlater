@@ -50,3 +50,5 @@ end
 gem 'annotate'
 
 gem 'devise'
+
+gem 'carrierwave'

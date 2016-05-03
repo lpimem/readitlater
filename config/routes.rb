@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get 'search', to: 'links#search'
   get 'filter_following', to: 'links#filter_following'
 
-  # get "comments", to: "comments#new"
+  # get "view_comments", to: "comments#new"
   get 'profile', to: 'profiles#index'
 
   devise_scope :account do

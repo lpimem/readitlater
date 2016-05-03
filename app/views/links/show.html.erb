@@ -1,24 +1,29 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Url:</strong>
-  <%= @link.url %>
-</p>
+      <div class="comments-list">
+      	<a href="<%= @link.url %>"><h5><%= @link.title %></h5></a>
+        <div class="tags">
+          <% @link.tags.each do |tag| %>
+            <div class="tag">
+              <%= tag.label %>
+            </div>
+          <% end %>
+        </div>
+    	<p class="mt-10"><%= @link.description %></p>
+    	<p class="mt-10">Date Published: <%= @link.created_at.to_formatted_s(:long_ordinal) %></p>
+    	</div>
+		<%= button_to 'Add Comment', new_comment_path, :class => "button mt-10"%>
+    	<% @link.comments.each do |comment| %>
+          <div class="comments">
+              </br>
+              <%= comment.comment %></br>
+              said by <%= comment.account_id %> at <%= comment.created_at %></br>
+          </br>
+          </div>
+        <% end %>
+       
+  		<!-- end of if signed_in -->
+	   
 
-<p>
-  <strong>Title:</strong>
-  <%= @link.title %>
-</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @link.description %>
-</p>
 
-<p>
-  <strong>Level:</strong>
-  <%= @link.level %>
-</p>
-
-<%= link_to 'Edit', edit_link_path(@link) %> |
-<%= link_to 'Back', links_path %>

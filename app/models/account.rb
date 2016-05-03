@@ -46,7 +46,7 @@ class Account < ActiveRecord::Base
     # one to many association between account and comments
 
   has_many :comments
-  has_one :profile
+  belongs_to :profile
 
 
 

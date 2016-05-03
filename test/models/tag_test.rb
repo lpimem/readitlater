@@ -11,7 +11,7 @@
 require 'test_helper'
 
 class TagTest < ActiveSupport::TestCase
-  MAX_TAG_LENGTH = 36
+  MAX_TAG_LENGTH = 15
   setup do
       @ruby = tags(:one)
   end
@@ -19,7 +19,7 @@ class TagTest < ActiveSupport::TestCase
   test "valid tags" do
     assert @ruby.valid?
 
-    for l in ["1", "a1" * (MAX_TAG_LENGTH / 2), "a_1", "1_a"]
+    for l in ["1", "a" * MAX_TAG_LENGTH, "a_1", "1_a"]
       @ruby.label = l
       assert @ruby.valid?
     end
@@ -30,8 +30,8 @@ class TagTest < ActiveSupport::TestCase
     assert @ruby.invalid?
   end
 
-  test "tag label should be less than 37" do
-    @ruby.label = "a" * 37
+  test "tag label should be less than 15" do
+    @ruby.label = "a" * (MAX_TAG_LENGTH+1)
     assert @ruby.invalid?
   end
 

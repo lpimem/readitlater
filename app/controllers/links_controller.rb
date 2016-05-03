@@ -13,7 +13,7 @@
 #
 
 class LinksController < ApplicationController
-  before_action :authenticate_account!, only: [:filter_following]
+  before_action :authenticate_account!, only: [:filter_following, :edit, :update, :destroy]
   before_action :set_link, only: [:show, :edit, :update, :destroy]
 
   LINKS_PER_PAGE = 5

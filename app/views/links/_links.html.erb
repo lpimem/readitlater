@@ -54,11 +54,15 @@
     <% else %>
       <% delimiter="?" %>
     <% end %>
-    <% for i in 1..(@pages) do %>
-      <div class='page_count_<% if i == @page %>active<% else %>normal<% end %>'>
-        <%= link_to i.to_s, @full_path + delimiter + "p=" + i.to_s %>
-      </div>
-    <% end %>
+    <nav>
+      <ul class="pagination">
+        <% for i in 1..(@pages) do %>
+          <li <% if i == @page %>class='active'<% end %>>
+            <%= link_to i.to_s, @full_path + delimiter + "p=" + i.to_s %>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
   <% end %>
   <!-- hard code stypes for links rating up/down buttons -->
   <style type="text/css">

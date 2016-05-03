@@ -23,7 +23,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/1.json
   def show
     @current_account_id = current_account.id
-    @links_by_profile = Link.where(['account_id = (?)', @profile.account_id ]).to_a
+    @links_by_profile = Link.where(['account_id = (?)', @current_account_id]).to_a
 
   end
 

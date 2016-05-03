@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   get 'search', to: 'links#search'
   get 'filter_following', to: 'links#filter_following'
 
-   get 'profile', to: 'profiles#index'
+  # get "view_comments", to: "comments#new"
+  get 'profile', to: 'profiles#index'
 
   devise_scope :account do
     authenticated :account do

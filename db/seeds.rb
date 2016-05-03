@@ -175,3 +175,22 @@ link1.tags = [tag_rails]
 link2.tags = [tag_rails, tag_tutorial]
 link1.save!
 link2.save!
+
+# Seed data for Comments
+comment1 = Comment.create!(comment: "It is a good textbook!", created_at: "2016-04-27 03:58:53 UTC")
+comment2 = Comment.create!(comment: "It is not good as I thought!", created_at: "2016-04-28 06:08:23 UTC")
+comment3 = Comment.create!(comment: "Try google this book <Best Ruby rails guildbook>~", created_at: "2016-04-28 08:23:25 UTC")
+comment4 = Comment.create!(comment: "No way. This is the best ever.", created_at: "2016-04-28 15:31:19 UTC")
+comment5 = Comment.create!(comment: "XDDDDDDD", created_at: "2016-04-29 03:00:53 UTC")
+
+comment6 = Comment.create!(comment: "This link is not friendly to the rookie like me :(", created_at: "2016-05-01 11:28:53 UTC")
+comment7 = Comment.create!(comment: "I can't agree any more. Can anyone share some useful links please?", created_at: "2016-05-02 05:25:53 UTC")
+
+
+account1.comments << comment1 << comment4
+account2.comments << comment2 << comment5
+account3.comments << comment3
+account4.comments << comment6
+account5.comments << comment7
+link1.comments << comment1 << comment2 << comment3 << comment4 << comment5
+link2.comments << comment6 << comment7

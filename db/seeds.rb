@@ -194,10 +194,11 @@ account4.comments << comment6
 account5.comments << comment7
 link1.comments << comment1 << comment2 << comment3 << comment4 << comment5
 link2.comments << comment6 << comment7
-
+#profile pic 
+av_pic1 = File.new(File.join(Rails.root, "app/assets/images/Screenshot.png"))
 
 # Profile seed data
-profile1 = Profile.create!(first_name: "James", last_name: "Bond")
+profile1 = Profile.create!(first_name: "James", last_name: "Bond" , avatar: av_pic1)
 profile2 = Profile.create!(first_name: "Alice", last_name: "Scalet")
 profile3 = Profile.create!(first_name: "Bob", last_name: "Brown")
 profile4 = Profile.create!(first_name: "Clare", last_name: "Grace")

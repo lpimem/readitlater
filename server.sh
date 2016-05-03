@@ -24,11 +24,12 @@ elif [ $CMD = "stop" ]; then
   if [ -f $PID_FILE ]; then
     PID=$(<$PID_FILE)
     kill $PID
+    rm -f $PID_FILE
   else
     echo "Not running"
   fi
 elif [ $CMD = "restart" ]; then
-  ./server.sh stop
+  ./server.sh stop && \
   ./server.sh start
 elif [ $CMD = "reset" ]; then
   ./server.sh stop

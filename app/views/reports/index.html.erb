@@ -1,27 +1,27 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Reports</h1>
+<h1>View Link Reports</h1>
 
 <table>
   <thead>
     <tr>
+      <th>Link title</th>
       <th>Reason</th>
-      <th colspan="3"></th>
+      <th colspan="1"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @reports.each do |report| %>
       <tr>
+        <td>
+          <% if report.link_id %>
+              <a href="<%= Link.find(report.link_id).url %>" target="_blank"><%= Link.find(report.link_id).title %></a>
+          <% end %>
+        </td>
         <td><%= report.reason %></td>
-        <td><%= link_to 'Show', report %></td>
-        <td><%= link_to 'Edit', edit_report_path(report) %></td>
-        <td><%= link_to 'Destroy', report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', report_path(report, :link_id => report.link_id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Report', new_report_path %>

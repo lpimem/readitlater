@@ -1,14 +1,4 @@
-<div class="clearfix mt-10">
-</div>
-<!-- TODO: extract this part -->
-<div class="right mt-10">
-		<input id='cb_filter_following' type="checkbox" class="button" checked="true"> Show only follower links
-</div>
-
-
-<div class="clearfix">
-</div>
-
+<%= render partial: "links/filter", locals: {checked: true} %>
 <%= render partial: "links/links" %>
 
 <script>

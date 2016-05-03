@@ -1,3 +1,71 @@
 // Place all the styles related to the Links controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.tags {
+    margin: 0;
+    padding: 0;
+    margin-top: 10px;
+    font-size: small;
+    color: grey;
+}
+
+.tag{
+  border: 1px solid grey;
+  border-radius: 5px;
+  display: inline;
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  margin-right: 5px;
+
+}
+
+.page_count_normal, .page_count_active{
+  display: inline-block;
+  border : 1px solid black;
+  font-size: 0.5em;
+  width: auto;
+  min-width: 16px;
+  margin: 0 2px 0 0;
+  text-align: center;
+  background-color: lightgrey;
+}
+
+.page_count_active{
+  background-color: yellow;
+  font-weight: bold;
+}
+
+/* search bar from http://bootsnipp.com/snippets/featured/custom-search-input*/
+#dv_search{
+    padding: 3px;
+    border: solid 1px #E4E4E4;
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+#dv_search input{
+    border: 0;
+    box-shadow: none;
+}
+
+#dv_search button{
+    margin: 2px 0 0 0;
+    background: none;
+    box-shadow: none;
+    border: 0;
+    color: #666666;
+    padding: 0 8px 0 10px;
+    border-left: solid 1px #ccc;
+}
+
+#dv_search button:hover{
+    border: 0;
+    box-shadow: none;
+    border-left: solid 1px #ccc;
+}
+
+#dv_search .glyphicon-search{
+    font-size: 23px;
+}

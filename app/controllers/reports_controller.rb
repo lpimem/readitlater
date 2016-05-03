@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: reports
+#
+#  id         :integer          not null, primary key
+#  reason     :text
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  link_id    :integer
+#  account_id :integer
+#
+
 class ReportsController < ApplicationController
   before_action :set_report, only: [:show, :edit, :update, :destroy]
 
@@ -55,9 +67,12 @@ class ReportsController < ApplicationController
   # DELETE /reports/1
   # DELETE /reports/1.json
   def destroy
+    @link_id = params[:link_id]
+    Link.where("id = ?", @link_id).destroy_all
+
     @report.destroy
     respond_to do |format|
-      format.html { redirect_to reports_url, notice: 'Report was successfully destroyed.' }
+      format.html { redirect_to reports_url, notice: 'Link and associated reports were successfully destroyed.' }
       format.json { head :no_content }
     end
   end

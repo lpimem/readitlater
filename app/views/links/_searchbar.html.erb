@@ -1,7 +1,35 @@
-<span>
-  <form class="inline" action="search">
-  <input type="search" name="keyword" class="mt-10" placeholder="Search!" />
-  <!-- <input type="button" class="button" value="Go!" /> -->
-  <input type="submit" class="button" value="Go!" />
-  </form>
-</span>
+<!-- from: http://bootsnipp.com/snippets/featured/custom-search-input -->
+<div class="row">
+    <div class="col-md-12">
+        <div id="dv_search">
+            <form class="input-group col-md-12" action="search">
+                <input id='ipt_search'
+                  type="search"
+                  name="keyword"
+                  class="form-control input-lg"
+                  placeholder="Search by tag, title or description..."
+                  <% if @keyword %>
+                    value="<%= @keyword %>"
+                  <% end %>
+                  />
+                <span class="input-group-btn">
+                    <button id='bt_search' class="btn btn-info btn-lg" type="submit" disabled="true">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                </span>
+            </form>
+        </div>
+    </div>
+    <script>
+      +function(){
+        var onSearchContentChange = function(){
+            if($("#ipt_search").get()[0].value.trim()==""){
+              $('#bt_search').prop('disabled', true);
+            }else{
+              $('#bt_search').prop('disabled', false);
+            }
+        };
+        setInterval(onSearchContentChange, 500);
+      }()
+    </script>
+</div>

@@ -1,18 +1,36 @@
+# == Schema Information
+#
+# Table name: links
+#
+#  id          :integer          not null, primary key
+#  url         :string
+#  title       :string
+#  description :string
+#  level       :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  account_id  :integer
+#
+
 class LinksController < ApplicationController
-  before_action :authenticate_account!, only: [:filter_following]
+  before_action :authenticate_account!, only: [:filter_following, :edit, :update, :destroy]
   before_action :set_link, only: [:show, :edit, :update, :destroy]
+
+  LINKS_PER_PAGE = 5
 
   # GET /links
   # GET /links.json
   def index
+     set_page
      if account_signed_in?
        pub_links = get_public_links
        pri_links = get_only_for_follower_links
        links_by_me = get_links_by_account current_account.id
-       @links = pub_links + pri_links + links_by_me
+       @links = (pub_links + pri_links + links_by_me).uniq{|link| link.id}
      else
        @links = get_public_links
      end
+     update_page_states
   end
 
   # GET /links/1
@@ -34,6 +52,10 @@ class LinksController < ApplicationController
   def create
     @link = Link.new(link_params)
     @link.account_id = current_account.id
+    if link_params.key?(:tags_text)
+      tag_labels = link_params[:tags_text].split(/[,;.\s\r\n]+/)
+      @link.tags = get_or_create_tags(tag_labels)
+    end
     if @link.save
       redirect_to authenticated_root_path, notice: 'Link was successfully created.'
     else
@@ -66,14 +88,25 @@ class LinksController < ApplicationController
   end
 
   def search
-    @links = Link.where("title like ? or description like ?",
-      "%" + params[:keyword] + "%",
-      "%" + params[:keyword] + "%" ).order("links.created_at")
+    set_page
+    kwd = params[:keyword]
+    @keyword = kwd
+    by_tag = Link.joins(
+      'LEFT JOIN link_tag_rels as a on a.link_id = links.id
+      LEFT JOIN tags as b on b.id = a.tag_id')
+      .where("b.label like ?", '%' + kwd+'%').order("links.created_at")
+    by_title_desc = Link.where("title like ? or description like ?",
+      "%" + kwd + "%",
+      "%" + kwd + "%" ).order("links.created_at")
+    @links = (by_tag + by_title_desc).uniq{|x| x.id}
+    update_page_states
   end
 
   def filter_following
     if current_account
+      set_page
       @links = get_followed_links
+      update_page_states
     else
       redirect_to unauthenticated_root_path, notice: 'You are not logged in.'
     end
@@ -111,6 +144,52 @@ class LinksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def link_params
-      params.require(:link).permit(:url, :title, :description, :level)
+      params.require(:link).permit(:url, :title, :description, :level, :tags_text)
+    end
+
+    def query_tags(tag_labels)
+      Tag.where(label: tag_labels)
+    end
+
+    def get_or_create_tags(tag_labels)
+      tags = query_tags(tag_labels)
+      to_create = tag_labels - tags.map { |tag| tag.label }
+      if to_create.any?
+        Tag.transaction do
+          to_create.each do |label|
+            tags << Tag.create!(label: label)
+          end
+        end
+      end
+      tags
+    end
+
+    def set_page
+      if params.key?(:p)
+        @page = params[:p].to_i
+        if @page < 0
+          @page = 1
+        end
+      else
+        @page = 1
+      end
+    end
+
+    def update_page_states
+      @pages = (@links.count / (page_limit * 1.0)).ceil
+      if @page > @pages
+        @page = @pages
+      end
+      if @links.any?
+        @links = @links[(@page-1)*page_limit, page_limit]
+      end
+      @full_path = request.original_fullpath
+      if @full_path.include?("p")
+        @full_path = @full_path.gsub(/[?&]p=\d+/, "")
+      end
+    end
+
+    def page_limit
+      LINKS_PER_PAGE
     end
 end

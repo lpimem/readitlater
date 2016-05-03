@@ -46,9 +46,9 @@
     					<input class="button mt-10" type="image" id = "RateUpImage" name="RateUp" src = "/assets/Up.png" style = "=height:20px; width:15px"/>
     				<% end %>
     			<% end %>
-          <input type="button" class="button mt-10" value="COMMENTS" onclick = "window.location='/links/<%= link.id %>'">
-          <input type="button" class="button mt-10" value="PUBLISHER" onclick="window.location='/profiles/<%= link.account_id %>'">
-          <input type="button" class="button mt-10" value="REPORT LINK" onclick="window.location='/report/<%= link.id %>'">
+          <input type="button" class="btn btn-default" value="COMMENTS" onclick = "window.location='/links/<%= link.id %>'">
+          <input type="button" class="btn btn-default" value="PUBLISHER" onclick="window.location='/profiles/<%= link.account_id %>'">
+          <input type="button" class="btn btn-default" value="REPORT LINK" onclick="window.location='/report/<%= link.id %>'">
   		  <% end %> <!-- end of if signed_in -->
 	   </div>
   <% end %> <!-- end of @links.each do |link|  -->

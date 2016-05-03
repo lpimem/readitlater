@@ -23,6 +23,8 @@ class ProfilesController < ApplicationController
   # GET /profiles/1.json
   def show
     @current_account_id = current_account.id
+    @links_by_profile = Link.where(['account_id = (?)', @profile.account_id ]).to_a
+
   end
 
   # GET /profiles/new
@@ -82,6 +84,6 @@ class ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:first_name, :last_name)
+      params.require(:profile).permit(:first_name, :last_name, :avatar)
     end
 end

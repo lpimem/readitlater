@@ -11,5 +11,6 @@
 #
 
 class Profile < ActiveRecord::Base
-	has_one :account
+	belongs_to :account
+	mount_uploader :avatar, AvatarUploader
 end

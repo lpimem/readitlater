@@ -23,6 +23,10 @@ class Account < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  #for nested profile and account--- 
+  has_one :profile
+  accepts_nested_attributes_for :profile
+  #----
 
   # Many to many association between account and followship
   # relations for one's followers
@@ -46,8 +50,6 @@ class Account < ActiveRecord::Base
     # one to many association between account and comments
 
   has_many :comments
-  belongs_to :profile
-
 
 
 #self-joins

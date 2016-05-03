@@ -16,12 +16,12 @@
 		<%= button_to 'Add Comment', new_comment_path, :class => "button mt-10"%>
     	<% @link.comments.each do |comment| %>
           <div class="comments">
-              
+
               </br>
               <%= comment.comment %></br>
-              <% if Account.find(comment.account_id).profile_id %>
-                said by <%= Profile.find(Account.find(comment.account_id).profile_id).first_name %> at <%= comment.created_at %></br>
-              <% end %>
+
+                said by <%= comment.account_id %> at <%= comment.created_at %></br>
+
           </br>
           </div>
         <% end %>

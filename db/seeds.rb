@@ -194,3 +194,19 @@ account4.comments << comment6
 account5.comments << comment7
 link1.comments << comment1 << comment2 << comment3 << comment4 << comment5
 link2.comments << comment6 << comment7
+
+
+# Profile seed data
+profile1 = Profile.create!(first_name: "James", last_name: "Bond")
+profile2 = Profile.create!(first_name: "Alice", last_name: "Scalet")
+profile3 = Profile.create!(first_name: "Bob", last_name: "Brown")
+profile4 = Profile.create!(first_name: "Clare", last_name: "Grace")
+profile5 = Profile.create!(first_name: "Tesler", last_name: "Lux")
+profile6 = Profile.create!(first_name: "Lijia", last_name: "Wang")
+
+account1.profile = profile1
+account2.profile = profile2
+account3.profile = profile3
+account4.profile = profile4
+account5.profile = profile5
+account6.profile = profile6

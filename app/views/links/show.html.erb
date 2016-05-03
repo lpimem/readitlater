@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-      <div class="comments-list">
+      <div class="well well-sm">
       	<a href="<%= @link.url %>"><h5><%= @link.title %></h5></a>
         <div class="tags">
           <% @link.tags.each do |tag| %>
@@ -8,22 +8,22 @@
               <%= tag.label %>
             </div>
           <% end %>
+      </br>
         </div>
     	<p class="mt-10"><%= @link.description %></p>
     	<p class="mt-10">Date Published: <%= @link.created_at.to_formatted_s(:long_ordinal) %></p>
-    	</div>
-		<%= button_to 'Add Comment', new_comment_path, :class => "button mt-10"%>
-    	<% @link.comments.each do |comment| %>
-          <div class="comments">
-              </br>
-              <%= comment.comment %></br>
-              said by <%= comment.account_id %> at <%= comment.created_at %></br>
-          </br>
-          </div>
-        <% end %>
-       
-  		<!-- end of if signed_in -->
-	   
+      </div>
 
-
-
+      	
+      	<div class="panel panel-default">
+      		<% @link.comments.each do |comment| %>
+            <div class="panel-heading">
+    			<h3 class="panel-title">said by <%= comment.account_id %> at <%= comment.created_at %></h3>
+  			</div>
+  			<div class="panel-body">
+    			<%= comment.comment %>
+  			</div>
+  			<% end %>
+		</div>
+		
+		<%= button_to 'Add Comment', new_comment_path, :class => "btn-group btn-group-xs" %>

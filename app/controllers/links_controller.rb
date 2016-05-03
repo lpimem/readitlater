@@ -16,7 +16,7 @@ class LinksController < ApplicationController
   before_action :authenticate_account!, only: [:filter_following]
   before_action :set_link, only: [:show, :edit, :update, :destroy]
 
-
+  LINKS_PER_PAGE = 5
 
   # GET /links
   # GET /links.json
@@ -189,12 +189,7 @@ class LinksController < ApplicationController
       end
     end
 
-    # def set_page_limit
-    #   # TODO: update this setting
-    #   page_limit = 2
-    # end
-
     def page_limit
-      7
+      LINKS_PER_PAGE
     end
 end

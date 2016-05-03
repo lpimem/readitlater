@@ -1,25 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Read It Later</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<%= render partial: "layouts/header" %>
-<div class="container">
-  <div>
-    <% if notice %>
-      <p class="alert alert-info"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert-danger"><%= alert %></p>
-    <% end %>
-  </div>
-  <%= yield %>
-  <%= render partial: "layouts/footer" %>
-</div>
-
-</body>
+  <head>
+    <title>Read It Later</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <%= render partial: "layouts/header" %>
+    <div class="container">
+      <div>
+        <% if notice %>
+          <p class="alert alert-info"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+          <p class="alert-danger"><%= alert %></p>
+        <% end %>
+      </div>
+      <%= yield %>
+    </div>
+    <%= render partial: "layouts/footer" %>
+  </body>
 </html>

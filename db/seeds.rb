@@ -191,3 +191,5 @@ account2.comments << comment2 << comment5
 account3.comments << comment3
 account4.comments << comment6
 account5.comments << comment7
+link1.comments << comment1 << comment2 << comment3 << comment4 << comment5
+link2.comments << comment6 << comment7

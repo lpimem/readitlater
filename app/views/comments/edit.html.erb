@@ -2,4 +2,9 @@
 
 <%= render 'form' %>
 
+<br>
+<br>
+<br>
+<input type="button" class="btn btn-default" value="Back to the link page" onclick = "window.location='/links/<%= @comment.link_id %>'">
+
 <center><%= link_to 'Back to the Home page', links_path, :class => "btn btn-default", :style => "color: red" %></center>

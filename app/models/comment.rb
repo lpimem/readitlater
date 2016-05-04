@@ -11,6 +11,9 @@
 #
 
 class Comment < ActiveRecord::Base
+
+	validates :comment, presence: true
+	
 	belongs_to :account, class_name: "account", foreign_key: "account_id"
 	belongs_to :link, class_name: "link", foreign_key: "link_id"
 end

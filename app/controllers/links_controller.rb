@@ -51,16 +51,18 @@ class LinksController < ApplicationController
   # POST /links
   # POST /links.json
   def create
-    @link = Link.new(link_params)
-    @link.account_id = current_account.id
-    if link_params.key?(:tags_text)
-      tag_labels = link_params[:tags_text].split(/[,;.\s\r\n]+/)
-      @link.tags = get_or_create_tags(tag_labels)
-    end
-    if @link.save
-      redirect_to authenticated_root_path, notice: 'Link was successfully created.'
-    else
-      render :new
+    Link.transaction do
+      @link = Link.new(link_params)
+      @link.account_id = current_account.id
+      if link_params.key?(:tags_text)
+        tag_labels = link_params[:tags_text].split(/[,;.\s\r\n]+/)
+        @link.tags = get_or_create_tags(tag_labels)
+      end
+      if @link.save
+        redirect_to authenticated_root_path, notice: 'Link was successfully created.'
+      else
+        render :new
+      end
     end
   end
 
@@ -68,13 +70,15 @@ class LinksController < ApplicationController
   # PATCH/PUT /links/1.json
   def update
     auth_check
-    respond_to do |format|
+    Link.transaction do
+      if link_params.key?(:tags_text)
+        tag_labels = link_params[:tags_text].split(/[,;.\s\r\n]+/)
+        @link.tags = get_or_create_tags(tag_labels)
+      end
       if @link.update(link_params)
-        format.html { redirect_to @link, notice: 'Link was successfully updated.' }
-        format.json { render :show, status: :ok, location: @link }
+        redirect_to @link, notice: 'Link was successfully updated.'
       else
-        format.html { render :edit }
-        format.json { render json: @link.errors, status: :unprocessable_entity }
+        render :edit
       end
     end
   end

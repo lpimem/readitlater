@@ -9,12 +9,16 @@
   </div>
   <div class="mt-10"><%= link.description %></div>
   <div class="text-muted">
-    Published By
-    <% if account_signed_in? %>
-      <a href='/profiles/<%= link.account_id %>'><%= link.user.profile.first_name %></a>
-    <% else %>
-      <%= link.user.profile.first_name %>
+    Published
+    <% if not link.user.profile.nil? %>
+    By
+      <% if account_signed_in? %>
+        <a href='/profiles/<%= link.account_id %>'><%= link.user.profile.first_name %></a>
+      <% else %>
+        <%= link.user.profile.first_name %>
+      <% end %>
     <% end %>
+
     @ <%= link.created_at.to_formatted_s(:long_ordinal) %>
   </div>
   <!-- Sum rating -->

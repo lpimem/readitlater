@@ -1,20 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-      <div class="well well-sm">
-      	<a href="<%= @link.url %>"><h5><%= @link.title %></h5></a>
-        <div class="tags">
-          <% @link.tags.each do |tag| %>
-            <div class="tag">
-              <%= tag.label %>
-            </div>
-          <% end %>
-      </br>
-        </div>
-    	<p class="mt-10"><%= @link.description %></p>
-    	<p class="mt-10">Date Published: <%= @link.created_at.to_formatted_s(:long_ordinal) %></p>
-      </div>
-
-      	
+      <%= render partial: "links/link", locals: {link: @link, show_comment: false} %>
       	<div class="panel panel-default">
       		<% @link.comments.each do |comment| %>
             <div class="panel-heading">
@@ -27,11 +13,9 @@
   			<div class="panel-body">
     			<%= comment.comment %>
   			</div>
-  			
-  			
   			<% end %>
 		</div>
-		
+
 		<%= form_for(Comment.new) do |f| %>
   			<div class="input-group input-group-lg">
     			<%= f.label :comment %><br>

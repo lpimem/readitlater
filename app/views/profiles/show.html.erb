@@ -23,14 +23,14 @@
 
 <p>
 	<%if current_account.id != @profile.account_id  %>
-	
-    
+
+
 
       <% exist = 0 %>
 
-      
-      
-      
+
+
+
       <% if exist ==0 %>
 
         <%= form_for(Followship.new) do |f| %>
@@ -43,32 +43,21 @@
           </div>
         <% end %>
 
-      
-          
-          
-      <% end %>
-    
 
-    
+
+
+      <% end %>
+
+
+
   <% end %>
 </p>
 <p>
 	<td><br><br><strong>all links shared by  <%= @profile.first_name %> </strong><br><br><td>
 </p>
 <p>
-	
- 	<% @links_by_profile.each do |link| %>
-      <div class="comments-list">
-      	<a href="<%= link.url %>" target="_blank"><h5><%= link.title %></h5></a>
-  		<p class="mt-10"><%= link.description %></p>
-  		<p class="mt-10">Date Published: <%= link.created_at.to_formatted_s(:long_ordinal) %></p>
-  		<p>
-  		<%if current_account.id == @profile.account_id  %>
-  			<%= button_to "edit", edit_link_path(link.id), method: :get, class: 'button' %>  <%= button_to "delete", link_path(link.id), method: :delete,  data: { confirm: 'Are you sure?' }, class: 'button' %>
-		<% end %>	
-  		</p>
-  	  </div>
-  	<% end %>
+
+ 	<%= render partial: "links/links" %>
 
 </p>
 <br>
@@ -76,14 +65,3 @@
 	<%= link_to 'Edit', edit_profile_path(@profile) %> |
 <% end %>
 <%= link_to 'Back', links_path %>
-
-
-
-
-
-
-
-
-
-
-

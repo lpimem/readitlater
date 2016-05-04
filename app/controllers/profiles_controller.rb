@@ -11,6 +11,8 @@
 #
 
 class ProfilesController < ApplicationController
+  include LinksHelper
+
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
 
   # GET /profiles
@@ -22,9 +24,11 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
+    set_page
     @current_account_id = current_account.id
-    @links_by_profile = Link.where(['account_id = (?)', @current_account_id]).to_a
-
+    @links = Link.where(['account_id = (?)', @current_account_id]).to_a
+    sort_links
+    update_page_states
   end
 
   # GET /profiles/new

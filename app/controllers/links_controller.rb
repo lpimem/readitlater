@@ -30,6 +30,7 @@ class LinksController < ApplicationController
      else
        @links = get_public_links
      end
+     sort_links
      update_page_states
   end
 
@@ -109,10 +110,10 @@ class LinksController < ApplicationController
     by_tag = Link.joins(
       'LEFT JOIN link_tag_rels as a on a.link_id = links.id
       LEFT JOIN tags as b on b.id = a.tag_id')
-      .where("b.label like ?", '%' + kwd+'%').order("links.created_at")
+      .where("b.label like ?", '%' + kwd+'%').order("links.created_at DESC")
     by_title_desc = Link.where("title like ? or description like ?",
       "%" + kwd + "%",
-      "%" + kwd + "%" ).order("links.created_at")
+      "%" + kwd + "%" ).order("links.created_at DESC")
     @links = (by_tag + by_title_desc).uniq{|x| x.id}
     update_page_states
   end
@@ -121,6 +122,7 @@ class LinksController < ApplicationController
     if current_account
       set_page
       @links = get_followed_links
+      sort_links
       update_page_states
     else
       redirect_to unauthenticated_root_path, notice: 'You are not logged in.'
@@ -191,6 +193,12 @@ class LinksController < ApplicationController
         end
       else
         @page = 1
+      end
+    end
+
+    def sort_links
+      if @links
+        @links = @links.sort_by{|link| link.created_at}.reverse
       end
     end
 

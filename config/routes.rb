@@ -20,7 +20,7 @@ Rails.application.routes.draw do
      root to: "links#index", as: :authenticated_root
      resources :links
      resources :reports
-     get 'report/:id', to: 'reports#new', as: :report_link
+     get 'report/new/:id', to: 'reports#new', as: :report_link
     end
 
     unauthenticated do

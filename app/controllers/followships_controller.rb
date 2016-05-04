@@ -67,7 +67,7 @@ class FollowshipsController < ApplicationController
   def destroy
     @followship.destroy
     respond_to do |format|
-      format.html { redirect_to followships_url, notice: 'Followship was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Followship was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -81,5 +81,6 @@ class FollowshipsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def followship_params
       params.fetch(:followship, {})
+      params.require(:followship).permit(:follower_id, :following_id)
     end
 end

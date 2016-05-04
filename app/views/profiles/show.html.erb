@@ -25,8 +25,21 @@
 </p>
 <p>
 	<%if current_account.id != @profile.account_id  %>
-		<td><br><button type="button">follow/unfollow</button><br></td>
-	<% end %>
+	
+    <% %>
+      <%= form_for(Followship.new) do |f| %>
+        <div class="input-group input-group-lg">
+          <input  style = "display:none" type="number" value="<%= @profile.account_id %>" name="followship[following_id]" id="followship_following_id" />
+          <input  style = "display:none" type="number" value="<%= current_account.id %>" name="followship[follower_id]" id="followship_follower_id" />
+      </div>
+        <div class="actions">
+          <%= f.submit :value => "Follow", :class => "btn btn-default"%>
+        </div>
+      <% end %>
+    <% %>
+
+    
+  <% end %>
 </p>
 <p>
 	<td><br><br><strong>all links shared by  <%= @profile.first_name %> </strong><br><br><td>

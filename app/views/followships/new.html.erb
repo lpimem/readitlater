@@ -2,4 +2,9 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Back', followships_path %>
+<div style = "display: inline-block">
+	
+	<input type="button" class="btn btn-default" value="Back to the profile page" onclick = "window.location='/profiles/<%= @followship.following_id %>'">
+	<%= link_to 'Back to the Home page', links_path, :class => "btn btn-default", :style => "color: red" %>
+	
+</div>

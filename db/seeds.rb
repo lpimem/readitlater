@@ -18,18 +18,6 @@ account_alice = Account.create!(email: "alice@memphis.edu", password: "test_user
 account_trudy = Account.create!(email: "trudy@memphis.edu", password: "test_user_12345", sign_in_count: 10, level: 0)
 account_lpi = Account.create!(email: "lpi@memphis.edu", password: "12345678", sign_in_count: 10, level: 0)
 
-
-# Account-link seed data (work)
-
-# account1.links << link1
-# account2.links << link2
-# account3.links << link3
-# account4.links << link4
-# account_lpi.links << link5
-# account_alice.links = [link6, link7, link8]
-# account_alice.save!
-
-
 # link seed data
 link1 = Link.create(
   url:'https://www.youtube.com/watch?v=TnXXR7IOYiI&feature=youtu.be',
@@ -171,10 +159,15 @@ account4.save!
 # Seed data for Tags
 tag_rails = Tag.create(label: "Rails")
 tag_tutorial = Tag.create(label: "Tutorial")
+tag_ML = Tag.create(label: "MachineLearning")
 link1.tags = [tag_rails]
 link2.tags = [tag_rails, tag_tutorial]
-link1.save!
-link2.save!
+link3.tags = [tag_ML]
+link4.tags = [tag_ML]
+
+[link1, link2, link3, link4].each { |link|
+  link.save!
+}
 
 # Seed data for Comments
 comment1 = Comment.create!(comment: "It is a good textbook!", created_at: "2016-04-27 03:58:53 UTC")
@@ -194,7 +187,7 @@ account4.comments << comment6
 account5.comments << comment7
 link1.comments << comment1 << comment2 << comment3 << comment4 << comment5
 link2.comments << comment6 << comment7
-#profile pic 
+#profile pic
 av_pic1 = File.new(File.join(Rails.root, "app/assets/images/Screenshot.png"))
 
 # Profile seed data

@@ -23,7 +23,7 @@ class Account < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  #for nested profile and account--- 
+  #for nested profile and account---
   has_one :profile
   accepts_nested_attributes_for :profile
   #----
@@ -34,7 +34,7 @@ class Account < ActiveRecord::Base
   has_many :followers, through: :followships, foreign_key: "following_id"
   # relations for one's followings
   has_many :followingships, class_name: "Followship", foreign_key: "follower_id"
-  has_many :followings, through: :followingships, foreign_key: "follower_id", source: "account"
+  has_many :followings, through: :followingships, foreign_key: "follower_id", source: "followers"
 
   # One to many association between account and link
 

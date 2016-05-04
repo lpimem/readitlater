@@ -20,19 +20,9 @@
   <br><br><img src="/assets/nopic.png" alt="logo" style="width:304px;height:228px;"><br><br>
   <% end %>
 </p>
-
 <p>
 	<%if current_account.id != @profile.account_id  %>
-
-
-
-      <% exist = 0 %>
-
-
-
-
-      <% if exist ==0 %>
-
+      <% if @followingship.nil? %>
         <%= form_for(Followship.new) do |f| %>
           <div class="input-group input-group-lg">
             <input  style = "display:none" type="number" value="<%= @profile.account_id %>" name="followship[following_id]" id="followship_following_id" />
@@ -42,14 +32,9 @@
             <%= f.submit :value => "Follow", :class => "btn btn-default"%>
           </div>
         <% end %>
-
-
-
-
+			<% else %>
+				<%= button_to 'Unfollow', @followingship, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-default"%>
       <% end %>
-
-
-
   <% end %>
 </p>
 <p>

@@ -175,3 +175,46 @@ link1.tags = [tag_rails]
 link2.tags = [tag_rails, tag_tutorial]
 link1.save!
 link2.save!
+
+# Seed data for Comments
+comment1 = Comment.create!(comment: "It is a good textbook!", created_at: "2016-04-27 03:58:53 UTC")
+comment2 = Comment.create!(comment: "It is not good as I thought!", created_at: "2016-04-28 06:08:23 UTC")
+comment3 = Comment.create!(comment: "Try google this book <Best Ruby rails guildbook>~", created_at: "2016-04-28 08:23:25 UTC")
+comment4 = Comment.create!(comment: "No way. This is the best ever.", created_at: "2016-04-28 15:31:19 UTC")
+comment5 = Comment.create!(comment: "XDDDDDDD", created_at: "2016-04-29 03:00:53 UTC")
+
+comment6 = Comment.create!(comment: "This link is not friendly to the rookie like me :(", created_at: "2016-05-01 11:28:53 UTC")
+comment7 = Comment.create!(comment: "I can't agree any more. Can anyone share some useful links please?", created_at: "2016-05-02 05:25:53 UTC")
+
+
+account1.comments << comment1 << comment4
+account2.comments << comment2 << comment5
+account3.comments << comment3
+account4.comments << comment6
+account5.comments << comment7
+link1.comments << comment1 << comment2 << comment3 << comment4 << comment5
+link2.comments << comment6 << comment7
+#profile pic 
+av_pic1 = File.new(File.join(Rails.root, "app/assets/images/Screenshot.png"))
+
+# Profile seed data
+profile1 = Profile.create!(first_name: "James", last_name: "Bond" , avatar: av_pic1)
+profile2 = Profile.create!(first_name: "Alice", last_name: "Scalet",avatar: av_pic1)
+profile3 = Profile.create!(first_name: "Bob", last_name: "Brown",avatar: av_pic1)
+profile4 = Profile.create!(first_name: "Clare", last_name: "Grace",avatar: av_pic1)
+profile5 = Profile.create!(first_name: "Tesler", last_name: "Lux",avatar: av_pic1)
+profile6 = Profile.create!(first_name: "Lijia", last_name: "Wang",avatar: av_pic1)
+
+
+profile1.account = account1
+profile2.account = account2
+profile3.account = account3
+profile4.account = account4
+profile5.account = account5
+profile6.account = account6
+
+# account1.profile = profile1
+# account2.profile = profile2
+# account3.profile = profile3
+# account4.profile = profile4
+# account5.profile = profile5

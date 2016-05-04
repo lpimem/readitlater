@@ -204,6 +204,10 @@ profile3 = Profile.create!(first_name: "Bob", last_name: "Brown",avatar: av_pic1
 profile4 = Profile.create!(first_name: "Clare", last_name: "Grace",avatar: av_pic1)
 profile5 = Profile.create!(first_name: "Tesler", last_name: "Lux",avatar: av_pic1)
 profile6 = Profile.create!(first_name: "Lijia", last_name: "Wang",avatar: av_pic1)
+profile7 = Profile.create!(first_name: "Bob", last_name: "Alex",avatar: av_pic1)
+profile8 = Profile.create!(first_name: "Alice", last_name: "Alex",avatar: av_pic1)
+profile9 = Profile.create!(first_name: "Trudy", last_name: "Alex",avatar: av_pic1)
+profile10 = Profile.create!(first_name: "Lei", last_name: "Pi",avatar: av_pic1)
 
 
 # profile1.account = account1
@@ -218,3 +222,8 @@ account2.profile = profile2
 account3.profile = profile3
 account4.profile = profile4
 account5.profile = profile5
+account6.profile = profile6
+account_bob.profile = profile7
+account_alice.profile = profile8
+account_trudy.profile = profile9
+account_lpi.profile = profile10

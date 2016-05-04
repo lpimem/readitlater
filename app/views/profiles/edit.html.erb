@@ -2,5 +2,4 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @profile %> |
-<%= link_to 'Back', profiles_path %>
+<input type="button" class="btn btn-default" value="Back to the profile page" onclick = "window.location='/profiles/<%= @profile.id %>'">

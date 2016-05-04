@@ -19,10 +19,16 @@
       		<% @link.comments.each do |comment| %>
             <div class="panel-heading">
     			<h3 class="panel-title">said by <strong style = "font-size: 20px"><%= Profile.where("account_id=?", comment.account_id).take().first_name %></strong> at <%= comment.created_at %></h3>
+    			<% if current_account.id == comment.account_id %>
+  					<input type="button" class="btn btn-default" value="Edit" onclick="window.location='/comments/<%= comment.id %>/edit'" style = "float:right; margin-top: -28px">
+    				<%= button_to 'Delete', comment, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-default", :style => "float:right; margin-top: -28px" %>
+    			<% end %>
   			</div>
   			<div class="panel-body">
     			<%= comment.comment %>
   			</div>
+  			
+  			
   			<% end %>
 		</div>
 		

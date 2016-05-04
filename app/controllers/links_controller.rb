@@ -45,6 +45,7 @@ class LinksController < ApplicationController
 
   # GET /links/1/edit
   def edit
+    auth_check
   end
 
   # POST /links
@@ -66,6 +67,7 @@ class LinksController < ApplicationController
   # PATCH/PUT /links/1
   # PATCH/PUT /links/1.json
   def update
+    auth_check
     respond_to do |format|
       if @link.update(link_params)
         format.html { redirect_to @link, notice: 'Link was successfully updated.' }
@@ -80,6 +82,7 @@ class LinksController < ApplicationController
   # DELETE /links/1
   # DELETE /links/1.json
   def destroy
+    auth_check
     @link.destroy
     respond_to do |format|
       format.html { redirect_to links_url, notice: 'Link was successfully destroyed.' }
@@ -191,5 +194,16 @@ class LinksController < ApplicationController
 
     def page_limit
       LINKS_PER_PAGE
+    end
+
+    def auth_check
+      if current_account
+        if @link
+          if current_account.id == @link.user.id or current_account.level == 1
+            return
+          end
+        end
+      end
+      redirect_to authenticated_root_path, :alert => 'You are not authorized to do so...'
     end
 end

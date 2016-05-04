@@ -13,7 +13,15 @@
 #
 
 class Link < ActiveRecord::Base
-	attr_accessor :tags_text
+	# getter
+	def tags_text
+		text = nil
+		if @tags
+				text = @tags.map{|t| t.label}.join(", ")
+		end
+		text
+	end
+	attr_reader :tags_text
 	# perfect url regex pattern by @dperini and @ixti
 	PERFECT_URL_PATTERN = %r{
     \A

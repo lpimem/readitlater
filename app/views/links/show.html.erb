@@ -1,29 +1,12 @@
 <p id="notice"><%= notice %></p>
-
-      <div class="well well-sm">
-      	<a href="<%= @link.url %>"><h5><%= @link.title %></h5></a>
-        <div class="tags">
-          <% @link.tags.each do |tag| %>
-            <div class="tag">
-              <%= tag.label %>
-            </div>
-          <% end %>
+<%= render partial: "links/link", locals: {link: @link} %>
+<%= button_to 'Add Comment', new_comment_path, :class => "button mt-10"%>
+<% @link.comments.each do |comment| %>
+    <div class="comments">
       </br>
-        </div>
-    	<p class="mt-10"><%= @link.description %></p>
-    	<p class="mt-10">Date Published: <%= @link.created_at.to_formatted_s(:long_ordinal) %></p>
-    	</div>
-		<%= button_to 'Add Comment', new_comment_path, :class => "button mt-10"%>
-    	<% @link.comments.each do |comment| %>
-          <div class="comments">
-
-              </br>
-              <%= comment.comment %></br>
-
-                said by <%= comment.account_id %> at <%= comment.created_at %></br>
-
-          </br>
-          </div>
-        <% end %>
-
-  		<!-- end of if signed_in -->
+      <%= comment.comment %></br>
+      said by <%= comment.account_id %> at <%= comment.created_at %></br>
+      </br>
+    </div>
+<% end %>
+<!-- end of if signed_in -->

@@ -45,34 +45,41 @@ class LinksController < ApplicationController
 
   # GET /links/1/edit
   def edit
+    auth_check
+    @link.tags_text = @link.tags.map{|t| t.label}.join(", ")
   end
 
   # POST /links
   # POST /links.json
   def create
-    @link = Link.new(link_params)
-    @link.account_id = current_account.id
-    if link_params.key?(:tags_text)
-      tag_labels = link_params[:tags_text].split(/[,;.\s\r\n]+/)
-      @link.tags = get_or_create_tags(tag_labels)
-    end
-    if @link.save
-      redirect_to authenticated_root_path, notice: 'Link was successfully created.'
-    else
-      render :new
+    Link.transaction do
+      @link = Link.new(link_params)
+      @link.account_id = current_account.id
+      if link_params.key?(:tags_text)
+        tag_labels = link_params[:tags_text].split(/[,;.\s\r\n]+/)
+        @link.tags = get_or_create_tags(tag_labels)
+      end
+      if @link.save
+        redirect_to authenticated_root_path, notice: 'Link was successfully created.'
+      else
+        render :new
+      end
     end
   end
 
   # PATCH/PUT /links/1
   # PATCH/PUT /links/1.json
   def update
-    respond_to do |format|
+    auth_check
+    Link.transaction do
+      if link_params.key?(:tags_text)
+        tag_labels = link_params[:tags_text].split(/[,;.\s\r\n]+/)
+        @link.tags = get_or_create_tags(tag_labels)
+      end
       if @link.update(link_params)
-        format.html { redirect_to @link, notice: 'Link was successfully updated.' }
-        format.json { render :show, status: :ok, location: @link }
+        redirect_to @link, notice: 'Link was successfully updated.'
       else
-        format.html { render :edit }
-        format.json { render json: @link.errors, status: :unprocessable_entity }
+        render :edit
       end
     end
   end
@@ -80,6 +87,7 @@ class LinksController < ApplicationController
   # DELETE /links/1
   # DELETE /links/1.json
   def destroy
+    auth_check
     @link.destroy
     respond_to do |format|
       format.html { redirect_to links_url, notice: 'Link was successfully destroyed.' }
@@ -191,5 +199,16 @@ class LinksController < ApplicationController
 
     def page_limit
       LINKS_PER_PAGE
+    end
+
+    def auth_check
+      if current_account
+        if @link
+          if current_account.id == @link.user.id or current_account.level == 1
+            return
+          end
+        end
+      end
+      redirect_to authenticated_root_path, :alert => 'You are not authorized to do so...'
     end
 end

@@ -1,0 +1,50 @@
+<div class="well well-sm">
+  <a href="<%= link.url %>" target="_blank"><%= link.title %></a>
+  <div class="tags">
+    <% link.tags.each do |tag| %>
+      <div class="tag">
+        <%= tag.label %>
+      </div>
+    <% end %>
+  </div>
+  <div class="mt-10"><%= link.description %></div>
+  <div class="text-muted">
+    Published
+    <!--  By <button type="button" class="btn btn-link" onclick="window.location='/profiles/<%= link.account_id %>'">
+      <%= link.user.email %>
+    </button> -->
+    @ <%= link.created_at.to_formatted_s(:long_ordinal) %>
+  </div>
+  <!-- Sum rating -->
+  <% sum = 0 %>
+  <% link.ratings.each do |rating| %>
+    <% sum = sum + rating.value; %>
+  <% end %>
+  <%= sum %>
+  <% if account_signed_in? %>
+    <!-- rate only once function -->
+    <% i = 0 %>
+    <% current_account.ratings.each do |rate| %>
+      <%if rate.link_id == link.id  %>
+        <% i = i+1%>
+        <% next %>
+      <% end %>
+    <% end %>
+    <!-- rate 1 -->
+    <% if i==0 %>
+      <%= form_for(Rating.new) do |f| %>
+        <div style="display:none">
+          <input type="number" value="1" name="rating[value]" id="rating_value" />
+          <input type="number" value="<%= link.id %>" name="rating[link_id]" id="rating_link_id" />
+        </div>
+        <input type="image" id = "RateUpImage" name="RateUp" src = "/assets/Up.png" style = "=height:20px; width:15px"/>
+      <% end %>
+    <% end %>
+    <input type="button" class="btn btn-default" value="COMMENTS" onclick = "window.location='/links/<%= link.id %>'">
+    <input type="button" class="btn btn-default" value="PUBLISHER" onclick="window.location='/profiles/<%= link.account_id %>'">
+    <input type="button" class="btn btn-default" value="REPORT LINK" onclick="window.location='/report/<%= link.id %>'">
+    <% if link.user.id == current_account.id %>
+      <input type="button" class="btn btn-default" value="EDIT" onclick="window.location='/links/<%= link.id %>/edit'">
+    <% end %>
+  <% end %> <!-- end of if signed_in -->
+</div>

@@ -9,10 +9,8 @@
   </div>
   <div class="mt-10"><%= link.description %></div>
   <div class="text-muted">
-    Published
-    <!--  By <button type="button" class="btn btn-link" onclick="window.location='/profiles/<%= link.account_id %>'">
-      <%= link.user.email %>
-    </button> -->
+    Published By
+    <a href='/profiles/<%= link.account_id %>'><%= link.user.profile.first_name %></a>
     @ <%= link.created_at.to_formatted_s(:long_ordinal) %>
   </div>
   <!-- Sum rating -->
@@ -41,9 +39,8 @@
       <% end %>
     <% end %>
     <% if show_comment %>
-    <input type="button" class="btn btn-default" value="COMMENTS" onclick = "window.location='/links/<%= link.id %>'">
+    <input type="button" class="btn btn-default" value="COMMENTS (<%= link.comments.count %>)" onclick = "window.location='/links/<%= link.id %>'">
     <%end%>
-    <input type="button" class="btn btn-default" value="PUBLISHER" onclick="window.location='/profiles/<%= link.account_id %>'">
     <input type="button" class="btn btn-default" value="REPORT LINK" onclick="window.location='/report/<%= link.id %>'">
     <% if link.user.id == current_account.id %>
       <input type="button" class="btn btn-default" value="EDIT" onclick="window.location='/links/<%= link.id %>/edit'">

@@ -13,10 +13,10 @@
 #
 
 class LinksController < ApplicationController
+  include LinksHelper
   before_action :authenticate_account!, only: [:filter_following, :edit, :update, :destroy]
   before_action :set_link, only: [:show, :edit, :update, :destroy]
 
-  LINKS_PER_PAGE = 5
 
   # GET /links
   # GET /links.json
@@ -129,6 +129,7 @@ class LinksController < ApplicationController
     end
   end
 
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_link
@@ -183,41 +184,6 @@ class LinksController < ApplicationController
         end
       end
       tags
-    end
-
-    def set_page
-      if params.key?(:p)
-        @page = params[:p].to_i
-        if @page < 0
-          @page = 1
-        end
-      else
-        @page = 1
-      end
-    end
-
-    def sort_links
-      if @links
-        @links = @links.sort_by{|link| link.created_at}.reverse
-      end
-    end
-
-    def update_page_states
-      @pages = (@links.count / (page_limit * 1.0)).ceil
-      if @page > @pages
-        @page = @pages
-      end
-      if @links.any?
-        @links = @links[(@page-1)*page_limit, page_limit]
-      end
-      @full_path = request.original_fullpath
-      if @full_path.include?("p")
-        @full_path = @full_path.gsub(/[?&]p=\d+/, "")
-      end
-    end
-
-    def page_limit
-      LINKS_PER_PAGE
     end
 
     def auth_check

@@ -45,7 +45,9 @@ class LinksController < ApplicationController
 
   # GET /links/1/edit
   def edit
-    auth_check
+    if not auth_check
+      return
+    end
     @link.tags_text = @link.tags.map{|t| t.label}.join(", ")
   end
 
@@ -70,7 +72,9 @@ class LinksController < ApplicationController
   # PATCH/PUT /links/1
   # PATCH/PUT /links/1.json
   def update
-    auth_check
+    if not auth_check
+      return
+    end
     Link.transaction do
       if link_params.key?(:tags_text)
         tag_labels = link_params[:tags_text].split(/[,;.\s\r\n]+/)
@@ -87,11 +91,14 @@ class LinksController < ApplicationController
   # DELETE /links/1
   # DELETE /links/1.json
   def destroy
-    auth_check
-    @link.destroy
-    respond_to do |format|
-      format.html { redirect_to links_url, notice: 'Link was successfully destroyed.' }
-      format.json { head :no_content }
+    if not auth_check
+      return
+    end
+    if @link.destroy
+      respond_to do |format|
+        format.html { redirect_to authenticated_root_path, notice: 'Link was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -123,7 +130,11 @@ class LinksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_link
-      @link = Link.find(params[:id])
+      begin
+        @link = Link.find(params[:id])
+      rescue => ex
+        redirect_to authenticated_root_path, :alert => ex.message
+      end
     end
 
     # query links shared with public
@@ -205,10 +216,11 @@ class LinksController < ApplicationController
       if current_account
         if @link
           if current_account.id == @link.user.id or current_account.level == 1
-            return
+            return true
           end
         end
       end
       redirect_to authenticated_root_path, :alert => 'You are not authorized to do so...'
+      return false
     end
 end

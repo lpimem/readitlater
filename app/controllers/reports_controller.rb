@@ -16,7 +16,16 @@ class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.json
   def index
-    @reports = Report.all
+    reports = Report.all
+    valid = []
+    reports.each {|r|
+      if Link.exists?(r.link_id)
+        valid << r
+      else
+        r.destroy
+      end
+    }
+    @reports = valid
   end
 
   # GET /reports/1

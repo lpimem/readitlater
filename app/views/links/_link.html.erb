@@ -10,7 +10,11 @@
   <div class="mt-10"><%= link.description %></div>
   <div class="text-muted">
     Published By
-    <a href='/profiles/<%= link.account_id %>'><%= link.user.profile.first_name %></a>
+    <% if account_signed_in? %>
+      <a href='/profiles/<%= link.account_id %>'><%= link.user.profile.first_name %></a>
+    <% else %>
+      <%= link.user.profile.first_name %>
+    <% end %>
     @ <%= link.created_at.to_formatted_s(:long_ordinal) %>
   </div>
   <!-- Sum rating -->
@@ -42,8 +46,46 @@
     <input type="button" class="btn btn-default" value="COMMENTS (<%= link.comments.count %>)" onclick = "window.location='/links/<%= link.id %>'">
     <%end%>
     <input type="button" class="btn btn-default" value="REPORT LINK" onclick="window.location='/report/<%= link.id %>'">
-    <% if link.user.id == current_account.id %>
+    <% if link.user.id == current_account.id or current_account.level == 1 %>
       <input type="button" class="btn btn-default" value="EDIT" onclick="window.location='/links/<%= link.id %>/edit'">
+      <button class="btn btn-default" data-href='/links/<%= link.id %>' data-toggle="modal" data-target="#confirm-delete-<%= link.id %>">
+          DELETE
+      </button>
+      <script>
+        $(document).ready(function(){
+          $('#confirm-delete-<%= link.id %>').on('click', '.btn-ok', function(e) {
+            var $modalDiv = $(e.delegateTarget);
+            $modalDiv.addClass('loading');
+            $.ajax({
+              url: '/links/<%= link.id %>',
+              type: 'DELETE',
+              success: function(r){
+                $modalDiv.modal('hide').removeClass('loading');
+              }
+            })
+          });
+          $('#confirm-delete-<%= link.id %>').on('show.bs.modal', function(e) {
+              $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+              $('.modal-header').html('Confirm delete?');
+              $('.modal-body').html('Please confirm you want to delete <strong><%= link.title %></strong>');
+          });
+          console.log("event registered.")
+        });
+      </script>
     <% end %>
   <% end %> <!-- end of if signed_in -->
+</div>
+<div class="modal fade" id="confirm-delete-<%= link.id %>" tabindex="-1" role="dialog" aria-labelledby="ConfirmModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-danger btn-ok">Confirm</a>
+            </div>
+        </div>
+    </div>
 </div>

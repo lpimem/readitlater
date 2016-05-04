@@ -1,8 +1,7 @@
 <%= form_for @link, :html => {class: 'col-md-8'} do |f| %>
   <% if @link.errors.any? %>
-    <div id="error_explanation" class="col-md-12">
+    <div id="error_explanation" class="col-md-12 alert alert-danger">
       <h2><%= pluralize(@link.errors.count, "error") %> prohibited this link from being saved:</h2>
-
       <ul>
       <% @link.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -34,5 +33,4 @@
     <%= f.submit class: 'btn btn-default' %>
     <input type="button" class='btn btn-default' style='float:right' value="Cancel" onclick="window.location.href='<%= authenticated_root_path %>'">
   </div>
-
 <% end %>

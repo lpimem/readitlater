@@ -97,12 +97,12 @@ link8.save!
 
 # rating seed data
 
-rate1 = Rating.create!(value: 1)
-rate2 = Rating.create!(value: 1)
+rate1 = Rating.create!(value: 3)
+rate2 = Rating.create!(value: 2)
 rate3 = Rating.create!(value: 1)
-rate4 = Rating.create!(value: -1)
+rate4 = Rating.create!(value: 0)
 rate5 = Rating.create!(value: 1)
-rate6 = Rating.create!(value: -1)
+rate6 = Rating.create!(value: 0)
 
 
 

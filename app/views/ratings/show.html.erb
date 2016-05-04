@@ -6,4 +6,9 @@
 </p>
 
 
-<%= link_to 'Back', ratings_path %>
+<div style = "display: inline-block">
+	
+	<input type="button" class="btn btn-default" value="Back to the link page" onclick = "window.location='/links/<%= @rating.link_id %>'">
+	<%= link_to 'Back to the Home page', links_path, :class => "btn btn-default", :style => "color: red" %>
+	
+</div>

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   resources :comments
   resources :profiles
-  devise_for :accounts
+  devise_for :accounts, controllers: { registrations: "registrations" }
   resources :followships
   resources :ratings
   resources :accounts

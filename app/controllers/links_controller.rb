@@ -46,6 +46,7 @@ class LinksController < ApplicationController
   # GET /links/1/edit
   def edit
     auth_check
+    @link.tags_text = @link.tags.map{|t| t.label}.join(", ")
   end
 
   # POST /links

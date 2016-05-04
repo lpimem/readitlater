@@ -13,15 +13,23 @@
 #
 
 class Link < ActiveRecord::Base
-	# getter
-	def tags_text
-		text = nil
-		if @tags
-				text = @tags.map{|t| t.label}.join(", ")
-		end
-		text
-	end
-	attr_reader :tags_text
+	# # getter
+	# def tags_text
+	# 	text = nil
+	# 	if @tags
+	# 			text = @tags.map{|t| t.label}.join(", ")
+	# 	end
+	# 	logger.info(">>>> tags_text: " + text)
+	# 	text
+	# end
+	# # setter
+	# def tags_text=(value)
+	# 	logger.info(">>>> setting tags_text :" + value)
+  #   tag_labels = value.split(/[,;.\s\r\n]+/)
+  #   @tags = Tag.get_or_create_tags(tag_labels)
+	# end
+
+	attr_accessor :tags_text
 	# perfect url regex pattern by @dperini and @ixti
 	PERFECT_URL_PATTERN = %r{
     \A

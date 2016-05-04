@@ -4,7 +4,7 @@
 </div>
 <% else %>
   <% @links.each do |link| %>
-      <%= render partial: "links/link", locals: {link: link} %>
+      <%= render partial: "links/link", locals: {link: link, show_comment: true} %>
   <% end %> <!-- end of @links.each do |link|  -->
   <!-- Pages -->
   <% if @pages > 1 %>

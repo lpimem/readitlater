@@ -206,15 +206,15 @@ profile5 = Profile.create!(first_name: "Tesler", last_name: "Lux",avatar: av_pic
 profile6 = Profile.create!(first_name: "Lijia", last_name: "Wang",avatar: av_pic1)
 
 
-profile1.account = account1
-profile2.account = account2
-profile3.account = account3
-profile4.account = account4
-profile5.account = account5
-profile6.account = account6
+# profile1.account = account1
+# profile2.account = account2
+# profile3.account = account3
+# profile4.account = account4
+# profile5.account = account5
+# profile6.account = account6
 
-# account1.profile = profile1
-# account2.profile = profile2
-# account3.profile = profile3
-# account4.profile = profile4
-# account5.profile = profile5
+account1.profile = profile1
+account2.profile = profile2
+account3.profile = profile3
+account4.profile = profile4
+account5.profile = profile5

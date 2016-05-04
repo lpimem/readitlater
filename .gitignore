@@ -19,3 +19,6 @@
 # Ignore pid file for UNIX-like OS created by sever.sh
 _running
 *.lock
+
+# ignore upload folder
+public/uploads/profile/avatar/*

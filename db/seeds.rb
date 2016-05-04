@@ -199,11 +199,11 @@ av_pic1 = File.new(File.join(Rails.root, "app/assets/images/Screenshot.png"))
 
 # Profile seed data
 profile1 = Profile.create!(first_name: "James", last_name: "Bond" , avatar: av_pic1)
-profile2 = Profile.create!(first_name: "Alice", last_name: "Scalet")
-profile3 = Profile.create!(first_name: "Bob", last_name: "Brown")
-profile4 = Profile.create!(first_name: "Clare", last_name: "Grace")
-profile5 = Profile.create!(first_name: "Tesler", last_name: "Lux")
-profile6 = Profile.create!(first_name: "Lijia", last_name: "Wang")
+profile2 = Profile.create!(first_name: "Alice", last_name: "Scalet",avatar: av_pic1)
+profile3 = Profile.create!(first_name: "Bob", last_name: "Brown",avatar: av_pic1)
+profile4 = Profile.create!(first_name: "Clare", last_name: "Grace",avatar: av_pic1)
+profile5 = Profile.create!(first_name: "Tesler", last_name: "Lux",avatar: av_pic1)
+profile6 = Profile.create!(first_name: "Lijia", last_name: "Wang",avatar: av_pic1)
 
 
 profile1.account = account1

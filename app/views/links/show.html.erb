@@ -18,7 +18,7 @@
       	<div class="panel panel-default">
       		<% @link.comments.each do |comment| %>
             <div class="panel-heading">
-    			<h3 class="panel-title">said by <strong style = "font-size: 20px"><%= Profile.find(Account.find(comment.account_id).profile_id).first_name %></strong> at <%= comment.created_at %></h3>
+    			<h3 class="panel-title">said by <strong style = "font-size: 20px"><%= Profile.where("account_id=?", comment.account_id).take().first_name %></strong> at <%= comment.created_at %></h3>
   			</div>
   			<div class="panel-body">
     			<%= comment.comment %>
@@ -44,4 +44,5 @@
 		<br>
 		<br>
 		<center><%= link_to 'Back to the Home page', links_path, :class => "btn btn-default", :style => "color: red" %></center>
+		<br>
 		<br>

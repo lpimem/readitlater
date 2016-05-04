@@ -45,7 +45,7 @@
     <% if show_comment %>
     <input type="button" class="btn btn-default" value="COMMENTS (<%= link.comments.count %>)" onclick = "window.location='/links/<%= link.id %>'">
     <%end%>
-    <input type="button" class="btn btn-default" value="REPORT LINK" onclick="window.location='/report/<%= link.id %>'">
+    <input type="button" class="btn btn-default" value="REPORT LINK" onclick="window.location='/report/new/<%= link.id %>'">
     <% if link.user.id == current_account.id %>
       <input type="button" class="btn btn-default" value="EDIT" onclick="window.location='/links/<%= link.id %>/edit'">
       <button class="btn btn-default" data-toggle="modal" data-target="#confirm-delete-<%= link.id %>">

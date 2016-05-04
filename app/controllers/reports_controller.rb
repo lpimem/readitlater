@@ -36,7 +36,11 @@ class ReportsController < ApplicationController
   # GET /reports/new
   def new
     @report = Report.new
-    @link = Link.find(params[:id])
+    if Link.exists?(params[:id])
+      @link = Link.find(params[:id])
+    else
+      redirect_to :back, notice: 'Link not found.'
+    end
   end
 
   # GET /reports/1/edit
@@ -53,7 +57,7 @@ class ReportsController < ApplicationController
         format.html { redirect_to @report, notice: 'Link was reported successfully.' }
         format.json { render :show, status: :created, location: @report }
       else
-        format.html { render :new }
+        format.html { redirect_to :back, alert: 'Cannot report link :' + @report.errors.full_messages.join("<br/>") }
         format.json { render json: @report.errors, status: :unprocessable_entity }
       end
     end

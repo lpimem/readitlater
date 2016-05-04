@@ -18,7 +18,7 @@
       	<div class="panel panel-default">
       		<% @link.comments.each do |comment| %>
             <div class="panel-heading">
-    			<h3 class="panel-title">said by <%= comment.account_id %> at <%= comment.created_at %></h3>
+    			<h3 class="panel-title">said by <strong style = "font-size: 20px"><%= Profile.find(Account.find(comment.account_id).profile_id).first_name %></strong> at <%= comment.created_at %></h3>
   			</div>
   			<div class="panel-body">
     			<%= comment.comment %>
@@ -26,4 +26,23 @@
   			<% end %>
 		</div>
 		
-		<%= button_to 'Add Comment', new_comment_path, :class => "btn-group btn-group-xs" %>
+		<%= form_for(Comment.new) do |f| %>
+  			<div class="input-group input-group-lg">
+    			<%= f.label :comment %><br>
+    			<%= f.text_area :comment, :style =>"width: 600px" %>
+    			<input  style = "display:none" type="number" value="<%= @link.id %>" name="comment[link_id]" id="comment_link_id" />
+    			<input  style = "display:none" type="number" value="<%= current_account.id %>" name="comment[account_id]" id="comment_account_id" />
+			</div>
+  			<div class="actions">
+    			<%= f.submit %>
+  			</div>
+		<% end %>
+
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<center><%= link_to 'Back to the Home page', links_path, :class => "btn btn-default", :style => "color: red" %></center>
+		<br>
+		<br>

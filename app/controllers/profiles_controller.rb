@@ -27,7 +27,7 @@ class ProfilesController < ApplicationController
     set_page
     @current_account_id = current_account.id
     unless @current_account.followings.nil?
-      r = @current_account.followingships.select{|f| f[:following_id] = @profile.account_id}
+      r = @current_account.followingships.select{|f| f[:following_id] == @profile.account_id}
       if r.any?
         @followingship = r[0]
       else

@@ -14,5 +14,4 @@ class Profile < ActiveRecord::Base
 	belongs_to :account
 	mount_uploader :avatar, AvatarUploader
 	validates :first_name, presence: true
-	validates :last_name, allow_blank: true
 end
